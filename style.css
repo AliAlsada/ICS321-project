@@ -1,7 +1,10 @@
 
+*{
+    font-family: 'Lato', sans-serif;
+}
+
 body{
     background-color: #323031;
-    /* min-height: 1200px; */
     display: grid;
     place-items: center;
     min-height: 100vh;
@@ -9,25 +12,26 @@ body{
 }
 
 .log-in-containor{
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
     align-items: center;
     margin: auto;
     background-color: #E5E5E5;
     width: 432px;
     border-radius: 10px; 
+    padding: 20px;
 }
 
-.log-in-button{
-    width: 40%;
-    padding: 0.5em 2em;
-    border-radius: 10px;
-    background-color: #FFC857;
-
+.log-in-text{
+    text-align: center;
 }
 
 input{
-    width: 313.03px;
-    border-radius: 10px;
-    background-color: #D9D9D9;
+    background-color: #E5E5E5;
+    width: 100%;
+    border: 0;
+    border-bottom: 3px solid black;
 }
+
+
+
