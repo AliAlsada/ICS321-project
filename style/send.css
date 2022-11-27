@@ -1,0 +1,63 @@
+:root{
+    --yellow : #FFC857;
+    --dark-yellow : #ffbb33;
+    --red: #c5283d;
+    --white: #ffffff;
+    --light-white: #cdcdcd;
+    --white2: #E5E5E5;
+}
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+body{
+    background-color: #323031;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;  
+}
+
+h2{
+    text-align: center;
+}
+
+
+.send-container{
+    background-color: var(--white2);
+    width: 350px;
+    align-items: center;
+    margin: auto;
+    border-radius: 10px; 
+    padding: 20px;
+}
+
+
+input, select{
+    background-color: #E5E5E5;
+    width: 100%;
+    border: 0;
+    border-bottom: 3px solid #cdcdcd;
+    padding: 2px;
+    margin-top: 10px;
+    margin-bottom: 2em;
+    outline: none;
+}
+
+.recipient-name{
+    display: flex;
+}
+
+button{
+    width: 100%;
+    text-align: center;
+    padding: 8px 16px;
+    margin-top: 2em;
+    border-radius: 4px;
+    border: 0;
+    background-color: var(--yellow);
+}
+
+button:hover{
+    background-color: var(--dark-yellow);
+}
