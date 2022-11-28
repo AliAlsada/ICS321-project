@@ -130,3 +130,7 @@ button:hover{
 select{
     font-size: 16px;
 }
+
+#country{
+    margin-top: 1em;
+}

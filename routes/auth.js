@@ -4,13 +4,12 @@ const router = express.Router();
 router.use(express.urlencoded({extended: 'false'}));
 router.use(express.json());
 
-router.get("/", (req, res) => {
-    res.render("signUp");
-})
 
+router.post("/" , (req, res) => {
 
-router.post("/auth" , (req, res) => {
+    //here, i need to validate the registered information (email, phone) from the database
     console.log(req.body);
+    res.redirect("/");
 })
 
 module.exports = router;

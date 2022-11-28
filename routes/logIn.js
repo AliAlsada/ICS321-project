@@ -1,10 +1,17 @@
 
-const express = require("express");
-const router = express.Router();
+// const express = require("express");
+// const router = express.Router();
+
+// router.use(express.urlencoded({extended: 'false'}));
+// router.use(express.json());
 
 
-app.get("/", (req, res) => {
-    
-})
+// router.get("/", (req, res) => {
+//     res.render("logIn");
+// })
 
-module.exports = router;
+// router.post("/" , (req, res) => {
+//     console.log(req.body);
+// })
+
+// module.exports = router;

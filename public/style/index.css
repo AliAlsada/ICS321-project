@@ -13,6 +13,7 @@
 body{
     padding: 0;
     margin: 0;
+    background-color: rgba(0, 0, 0, 0.878);
     background-image: url("/images/home-img.jpg");
     background-size: cover; /* Resize the background image to cover the entire container */ 
 }
