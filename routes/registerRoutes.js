@@ -13,6 +13,6 @@ router.get("/", (req, res) => {
     res.render("signUp");
 })
 
-router.post("/auth", registerController.register_auth)
+router.post("/auth", registerController.registerAuth)
 
 module.exports = router;

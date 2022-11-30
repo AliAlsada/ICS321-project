@@ -1,6 +1,7 @@
 
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const userLogInAuth = require("../controllers/logInControllers");
 
 const router = express.Router();
 
@@ -12,8 +13,6 @@ router.get("/", (req, res) => {
     res.render("logIn");
 })
 
-router.post("/" , (req, res) => {
-    console.log(req.body);
-})
+router.post("/auth" , userLogInAuth.userLogInAuth)
 
 module.exports = router;

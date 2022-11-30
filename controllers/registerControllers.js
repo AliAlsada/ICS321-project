@@ -1,9 +1,9 @@
 //register_auth
 const bcrypt = require("bcryptjs");
-const db = require("./dbConnection")
+const db = require("./dbConnection");
 
 
-const register_auth = (req, res) => {
+const registerAuth = (req, res) => {
     //get the data from the user
     const {email, firstName, lastName, password, country, city, street, phone} = req.body
     let hashedPassword = bcrypt.hash(password, 8);
@@ -65,5 +65,5 @@ const register_auth = (req, res) => {
 
 
 module.exports = {
-    register_auth
+    registerAuth
 }
