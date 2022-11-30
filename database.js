@@ -105,10 +105,8 @@ sql = `CREATE TABLE IF NOT EXISTS SHIPPED_VIA(
 
 sql = `CREATE TABLE IF NOT EXISTS ACCOUNT (
         account_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT NOT NULL,
         email TEXT NOT NULL,
         password TEXT NOT NULL,
-        UNIQUE (username),
         UNIQUE (email)
         )`; 
         db.run(sql); 
@@ -277,9 +275,29 @@ sql = `CREATE TABLE IF NOT EXISTS TRUCK(
 
 // // ---------------------print all tables names---------------------
 
-db.all("select name from sqlite_master where type='table'", function (err, tables) {
-        console.log(tables);
-    });
+
+
+sql = `SELECT * FROM CUSTOMER`
+db.all(sql, [], (err, rows) => {
+        if (err) return console.log(err.message);
+        rows.forEach((row) => {console.log(row)});
+});
+
+sql = `SELECT * FROM ACCOUNT`
+db.all(sql, [], (err, rows) => {
+        if (err) return console.log(err.message);
+        rows.forEach((row) => {console.log(row)});
+});
+
+sql = `SELECT * FROM USER_ACCOUNT`
+db.all(sql, [], (err, rows) => {
+        if (err) return console.log(err.message);
+        rows.forEach((row) => {console.log(row)});
+});
+
+// db.all("select name from sqlite_master where type='table'", function (err, tables) {
+//         console.log(tables);
+//     });
 
 
 
