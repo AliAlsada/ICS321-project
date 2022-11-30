@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/style/style.css">
-    <title>Sign In</title>
+    <title>Sign Up</title>
 </head>
 <body>
     <div class="log-in-containor">
@@ -63,6 +63,13 @@
                     <input type="tel" name="phone" id="phone" class="user-input" pattern=^((?:[+?0?0?966]+)(?:\s?\d{2})(?:\s?\d{7}))$ required>
             
                     <button class="log-in-button" type="submit">Sign Up</button>
+
+                    <div class="register-status">
+
+                        <%_ if(typeof message !== "undefined"){ _%>
+                            <p><%= message%></p>
+                            <%_ } _%>
+                    </div>
 
             </form>          
         </div>

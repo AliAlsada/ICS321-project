@@ -13,8 +13,8 @@ let sql;
 //connect to the DB
 const db = new  sqlite3.Database('./kfumex.db', sqlite3.OPEN_READWRITE, 
 (err) => {
-        if (err) return console.log(err.message);
-        else console.log('connected to the SQLlite database');
+    if (err) return console.log(err.message);
+    else console.log('connected to the SQLlite database');
 });
 
 
@@ -26,6 +26,14 @@ router.post("/" , (req, res) => {
 
     //here, i need to validate the registered information (email, phone) from the database
     //validate the data
+
+    sql = `SELECT phone FROM CUSTOMER WHERE phone = ?`;
+    db.get(sql, [phone], (err, row) => {
+        if (row !== undefined) {
+            return res.render("signUp", {message: 'this phone is not unique'});
+        }
+    })
+
     sql = `SELECT email FROM CUSTOMER WHERE email = ?`;
     db.get(sql, [email], (err, row) => {
         if (err) {
@@ -64,11 +72,11 @@ router.post("/" , (req, res) => {
 
 
             //*****************after inserting the data in the database, redirect the user to the log in page.*****************
-            res.redirect("/signUp");
+            res.render("signUp", {message: 'User registered!'});
         }
 
         else {
-            res.redirect("/signUp");
+            res.render("signUp", {message: 'test'});
         }
     });
     
