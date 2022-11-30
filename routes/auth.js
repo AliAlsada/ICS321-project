@@ -79,9 +79,6 @@ router.post("/" , (req, res) => {
             res.render("signUp", {message: 'test'});
         }
     });
-    
-
-
 })
 
 module.exports = router;

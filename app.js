@@ -17,15 +17,11 @@ app.get("/", (req, res) => {
 });
 
 
-const signUpRouter = require("./routes/signUp");
+const signUpRouter = require("./routes/registerRoutes");
 app.use("/signUp", signUpRouter);
 
-const authRouter = require("./routes/auth");
-app.use("/auth", authRouter);
-
-
-// const logInRouter = require("./routes/logIn");
-// app.use("/logIn", logInRouter);
+const logInRouter = require("./routes/logInRoutes");
+app.use("/logIn", logInRouter);
 
 
 app.listen(3000);

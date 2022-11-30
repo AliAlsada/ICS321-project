@@ -1,15 +1,18 @@
+
 const express = require("express");
+const bcrypt = require("bcryptjs");
+
 const router = express.Router();
 
 router.use(express.urlencoded({extended: 'false'}));
 router.use(express.json());
 
+
 router.get("/", (req, res) => {
-    res.render("signUp");
+    res.render("logIn");
 })
 
-
-router.post("/auth" , (req, res) => {
+router.post("/" , (req, res) => {
     console.log(req.body);
 })
 
