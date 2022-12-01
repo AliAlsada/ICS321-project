@@ -54,7 +54,7 @@ const registerAuth = async (req, res) => {
                 }});
 
                 //*****************after inserting the data in the database, redirect the user to the log in page.*****************
-                res.render("signUp", {message: 'User registered!'});
+                res.render("logIn", {message: 'User registered!'});
         }
 
         else {

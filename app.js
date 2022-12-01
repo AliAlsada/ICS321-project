@@ -1,5 +1,5 @@
 const express = require("express");
-const bcrypt = require("bcryptjs");
+const session = require("express-session");
 const dotenv = require('dotenv')
 
 
@@ -12,16 +12,29 @@ app.use(express.urlencoded({extended: 'false'}));
 app.use(express.json());
 
 
+
+app.use(session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true
+}));
+
 app.get("/", (req, res) => {
     res.render("index");
 });
 
+const logInRouter = require("./routes/logInRoutes");
+app.use("/logIn", logInRouter);
+
+const indexRouter = require("./routes/indexRoutes");
+app.use("/index", indexRouter);
 
 const signUpRouter = require("./routes/registerRoutes");
 app.use("/signUp", signUpRouter);
 
-const logInRouter = require("./routes/logInRoutes");
-app.use("/logIn", logInRouter);
+
+const searchRouter = require("./routes/searchRoutes");
+app.use("/search", searchRouter);
 
 
 app.listen(3000);

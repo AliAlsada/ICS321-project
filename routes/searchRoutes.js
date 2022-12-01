@@ -1,17 +1,15 @@
-
 const express = require("express");
-const logInControllers = require("../controllers/logInControllers");
+const searchControllers = require("../controllers/searchControllers");
 
 const router = express.Router();
 
 router.use(express.urlencoded({extended: 'false'}));
 router.use(express.json());
 
-
 router.get("/", (req, res) => {
-    res.render("logIn");
+    res.render("search", {user: req.session.user});
 })
 
-router.post("/auth" , logInControllers.userLogInAuth)
+router.post("/result" , searchControllers.searchResults);
 
 module.exports = router;

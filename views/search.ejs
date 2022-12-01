@@ -8,11 +8,21 @@
     <title>search</title>
 </head>
 <body>
+
+    
+    <header>
+        <% if (typeof user != 'undefined') { %>
+            <%- include("./partials/userHeader.ejs") %> 
+        <% } else {%>
+            <%- include("./partials/header.ejs") %> 
+        <% } %> 
+    </header>
+
     <h1>Advanced Search</h1>
 
 
     <div class="track-containor">
-        <form action="">
+        <form action="" method="post">
             <input type="text" name="track-search-input" id="track-search-input" placeholder="Search by package ID">
 
             <select id="catagory" name="catagory" class="catagory">
