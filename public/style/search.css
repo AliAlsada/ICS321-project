@@ -96,7 +96,7 @@ h2{
 
 
 
-.track-containor{
+.search-containor{
     display: flex;
     justify-content: center;
 }
@@ -137,6 +137,34 @@ button{
     border: 0;
     background-color: var(--yellow);
 }
+
+.results{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%; /* Need a specific value to work */
+    border-radius: 10px;
+    background-color: var(--white);
+    opacity: 0;
+}
+
+.results li{
+    display: block;
+}
+
+.liTrack{
+    width: 30%;
+}
+
+.results.active{
+    opacity: 1;
+}
+
+.search-containor.unactive{
+    opacity: 0;
+}
+
 
 
 

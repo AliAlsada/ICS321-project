@@ -10,6 +10,6 @@ router.get("/", (req, res) => {
     res.render("search", {user: req.session.user});
 })
 
-router.post("/result" , searchControllers.searchResults);
+router.post("/results" , searchControllers.searchResults);
 
 module.exports = router;

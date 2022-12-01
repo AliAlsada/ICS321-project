@@ -21,11 +21,11 @@
     <h1>Advanced Search</h1>
 
 
-    <div class="track-containor">
-        <form action="" method="post">
-            <input type="text" name="track-search-input" id="track-search-input" placeholder="Search by package ID">
+    <div class="search-containor">
+        <form action="/search/results" method="post">
+            <input type="text" name="searchedBarcode" id="track-search-input" placeholder="Search by package ID">
 
-            <select id="catagory" name="catagory" class="catagory">
+            <select id="catagory" name="searchedCatagory" class="catagory">
                 <option>Select catagory</option>
                 <option value="chemical">Chemical</option>
                 <option value="liquid">Liquid</option>
@@ -33,7 +33,7 @@
                 <option value="regular">Regular</option>
             </select>
 
-            <select id="searched-city" name="city" class="searched-city">
+            <select id="searched-city" name="searchedCity" class="searched-city">
                 <option>Select City</option>
                 <option value="RY">Riyadh</option>
                 <option value="JE">Jeddah</option>
@@ -45,7 +45,7 @@
                 <option value="AB">Abha</option>
             </select>
 
-            <select id="seached-state" name="state" class="seached-state">
+            <select id="seached-state" name="searchedState" class="seached-state">
                 <option>Select a State</option>
                 <option value="delivered">Delivered</option>
                 <option value="lost">Lost</option>
@@ -53,18 +53,28 @@
                 <option value="in-transit">In transit</option>
             </select>
 
-            <select id="seached-state-condition" name="state" class="seached-state-condition">
+            <select id="seached-state-condition" name="searchedCondition" class="seached-state-condition">
                 <option>Select the package condition</option>
                 <option value="damaged">damaged</option>
                 <option value="delayed">delayed</option>
             </select>
 
-            <button>Search</button>
+            <button class="searchButton">Search</button>
             
         </form>
     </div>
 
+    <section class="results">
+        <ul>
+            <li>package1 <button class="liTrack">Track</button></li>
+            <li>package2</li>
+            <li>package3</li>
+            <li>package4</li>
+        </ul> 
+        
+        <button class="backButton">Back</button>  
+    </section>
 
-
+    <script src="/js/search.js"></script>
 </body>
 </html>

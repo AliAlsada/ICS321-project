@@ -21,6 +21,7 @@ const userLogInAuth = (req, res) => {
                 req.session.authenticated = true;
                 req.session.user = {id,email};
                 res.render("index", {user: req.session.user});
+                
             }
             else res.render("logIn", {message: 'Password is not correct'});
         })

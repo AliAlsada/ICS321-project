@@ -7,8 +7,8 @@ router.use(express.json());
 
 router.get("/", (req, res) => {
     res.render("index");
-    console.log(req.session.user)
 })
+
 
 
 
