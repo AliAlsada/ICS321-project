@@ -77,10 +77,7 @@ header button{
     background-color: var(--yellow);
 }
 
-button a{
-    color: black;
-    font-size: 1.5rem;
-}
+
 
 h1{
     color: var(--white);
@@ -143,10 +140,11 @@ button{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30%; /* Need a specific value to work */
+    width: 20%; /* Need a specific value to work */
     border-radius: 10px;
-    background-color: var(--white);
-    opacity: 0;
+    background-color: #cdcdcd;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;  
+
 }
 
 .results li{
@@ -157,14 +155,57 @@ button{
     width: 30%;
 }
 
-.results.active{
-    opacity: 1;
+section h2{
+    margin-left: 0;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    padding-top: 10px;
+    color: black;
+    text-align: center;
+    font-size: 2.3rem;
 }
 
-.search-containor.unactive{
-    opacity: 0;
+
+
+.package{
+    background-color: #003550;
+    border-radius: 20px;
+    width: 90%;
+    margin: auto; 
+    margin-bottom: 2em;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    transition: 200ms linear; 
 }
 
+.package:hover{
+    transform: scale(1.1);
+}
+
+
+.package h3{
+    text-align: center;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+
+}
+
+li{
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    text-align: center;
+
+}
+
+section button{
+    margin-top: 0;
+    border-radius: 10px;
+    background-color: var(--light-white);
+}
+
+section button:hover{
+    background-color: var(--yellow);
+}
 
 
 

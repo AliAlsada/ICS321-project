@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/search.css">
+    <title>search results</title>
+</head>
+<body>
+    <%- include("./partials/userHeader.ejs") %> 
+
+
+
+    <section class="results">
+        <h2>Packages</h2>
+
+        <% if (packages.length > 0) { %> 
+            <% packages.forEach(package => { %>
+                <div class="package">
+        
+                    <h3>Barcode: <%= package.barcode%></h3>
+                    <ul>
+                        <% if (package.sender_ID === id) { %>
+                            <li>To: <%= package.Fname + " " + package.Lname%></li>
+                        <% } else { %>
+                            <li>From: <%= package.Fname + " " + package.Lname%></li>
+                        <% } %>  
+
+                        <li>delivery date: <%= package.delivery_date %></li>
+                        <li>distenation: <%= package.distenation %></li>
+                        <li><button>Track</button></li>
+                    </ul>
+                </div>
+                
+            <% }) %> 
+        <% } %> 
+
+    </section>
+</body>
+</html>

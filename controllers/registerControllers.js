@@ -1,6 +1,7 @@
 //register_auth
 const bcrypt = require("bcryptjs");
 const db = require("./dbConnection");
+db.get("PRAGMA foreign_keys = ON")
 
 
 const registerAuth = async (req, res) => {
