@@ -4,30 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/style/send.css">
+    <link rel="stylesheet" href="../style/send.css">
+    <script src="../js/send.js" defer></script>
     <title>send</title>
 </head>
 <body>
-   
-
-    <div class="send-container">
-        <h2>Recipent Address</h2>
-
-        <div>
-            <label for="send-country">Country/Region</label>
-            <br>
-            <select id="send-country" name="send-country" class="send-country">
-                <option>Select Country</option>
-                <option value="SA">Saudi Arabia</option>
-            </select>
+    <form action="/send/save" class="form" method="post">
+        <h1 class="text-center">Shipment Form</h1>
+        <!-- Progress bar -->
+        <div class="progressbar">
+          <div class="progress" id="progress"></div>
+          
+          <div
+            class="progress-step progress-step-active"
+            data-title="Address"
+          ></div>
+          <div class="progress-step" data-title="Shipment details"></div>
+          <div class="progress-step" data-title="Payment"></div>
         </div>
-
-
-        <div>
-            <label for="send-city">City</label>
+  
+        <!-- Steps -->
+        <div class="form-step form-step-active">
+          <div class="input-group">
+      
+            <label for="country">Country/Region</label>
+            <select id="country" name="country" class="country" required>
+              <option>Select Country</option>
+              <option value="SA">Saudi Arabia</option>
+            </select>
+            
             <br>
-            <select id="send-city" name="send-city" class="send-city">
+
+            <label for="city">City</label>
+            <select id="city" name="city" class="city" required>
                 <option>Select City</option>
                 <option value="RY">Riyadh</option>
                 <option value="JE">Jeddah</option>
@@ -38,24 +47,119 @@
                 <option value="QF">Qatif</option>
                 <option value="AB">Abha</option>
             </select>
-        </div>
 
-        <div>
+            <br>
+
             <label for="first-name">Recipient Name</label>
-            <br>
             <div class="recipient-name">
-                <input type="text" name="first-name" id="first-name" class="first-name" placeholder="First Name">
-                <input type="text" name="last-name" id="last-name" class="last-name" placeholder="Last Name">
+                <input type="text" name="first-name" id="first-name" class="first-name" placeholder="First Name" required>
+                <input type="text" name="last-name" id="last-name" class="last-name" placeholder="Last Name" required>
             </div>
+
+            <br>
+
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone" id="phone" class="phone" placeholder="Write Recipient Phone starting with 05" required>
+
+            <br>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" class="email" placeholder="Write Recipient Email" required>
+            
+          </div>
+          
+
+          <div class="">
+            <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+          </div>
         </div>
+        
+        <div class="form-step">
+          <div>
+            <!-- this needs to be updated to better selector -->
+            <label for="weight">Estimated weight (Kg)</label>
+            <input type="number" name="weight" id="weight" required>
+        </div>
+
+        <br>
+
 
         <div>
-            <label for="recipient-phone">Phone</label>
-            <br>
-            <input type="tel" name="recipient-phone" id="recipient-phone" class="recipient-phone" placeholder="Write Recipient Phone">
+            <label for="value">Value (SAR)</label>
+            <input type="number" name="value" id="value" required>
         </div>
 
-        <button>Next</button>
-    </div>
+        <br>
+
+        <div>
+            <label for="catagory">Catagory</label>
+            <select id="catagory" name="catagory" class="catagory" required>
+                <option>Select catagory</option>
+                <option value="chemical">Chemical</option>
+                <option value="liquid">Liquid</option>
+                <option value="fragile">Fragile</option>
+                <option value="regular">Regular</option>
+            </select>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="delivery-date">Delivery date</label>
+            <input type="date" name="delivery-date" id="delivery-date"  required>
+        </div>
+
+        <br>
+
+          <div class="btns-group">
+            <a href="#" class="btn btn-prev">Previous</a>
+            <a href="#" class="btn btn-next">Next</a>
+          </div>
+        </div>
+
+
+
+        <div class="form-step">
+
+
+          <!-- bring the price from the backend to ejs -->
+          <div class="price-container">
+            <h2> Price: 222 SAR</h2>
+          </div>
+
+          <!-- payment here -->     
+          <div>
+            <label for="Card-Number">Card Number</label>
+            <input type="text" name="Card-Number" id="Card-Number"  required>
+          </div>
+          
+          <br>
+
+          <div class="data-cvv">
+            <div>
+              <label for="Expiry-Date">Expiry Date</label>
+              <input type="date" name="Expiry-Date" id="Expiry-Date"  required>
+            </div>
+
+            <div>
+              <label for="cvv">CVV</label>
+              <input type="number" name="cvv" id="cvv"  required>
+            </div>
+          </div>
+
+          <br>
+
+          <label for="name">Name</label>
+            <input type="text" name="name" id="name"  required>
+          <br>
+
+          <div class="btns-group">
+            <a href="#" class="btn btn-prev">Previous</a>
+            <input type="submit" value="Submit" class="btn" />
+          </div>
+        </div>
+      </form>
+    
+      
 </body>
 </html>

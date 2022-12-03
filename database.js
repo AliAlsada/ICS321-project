@@ -396,11 +396,11 @@ sql = `INSERT INTO WAREHOUSE(location_num, street)  VALUES (?,?)`;
 //         console.log(`Rows inserted ${this.changes}`);
 //       });
 
-sql = `SELECT * FROM PACKAGE`
-db.all(sql, (err, rows) => {
-        if (err) return console.log(err.message);
-        rows.forEach((row) => { console.log(row) });
-});
+// sql = `SELECT * FROM FRAGILE`
+// db.all(sql, (err, rows) => {
+//         if (err) return console.log(err.message);
+//         rows.forEach((row) => { console.log(row) });
+// });
 
 
 // //insert values into package
@@ -449,3 +449,5 @@ db.all(sql, (err, rows) => {
 //         }
 //         console.log(`Rows inserted ${this.changes}`);
 //       });
+
+

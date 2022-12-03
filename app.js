@@ -36,5 +36,9 @@ app.use("/signUp", signUpRouter);
 const searchRouter = require("./routes/searchRoutes");
 app.use("/search", searchRouter);
 
+const sendRouter = require("./routes/sendRoutes");
+app.use("/send", sendRouter);
+
+
 
 app.listen(3000);

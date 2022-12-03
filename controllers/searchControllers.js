@@ -9,23 +9,31 @@ const searchResults = (req, res) => {
     
 
     
-    if (searchedBarcode){
-        searchBarcode(searchedBarcode, req, res);
+    
+    if (searchedBarcode !== ""){
+        searchBarcode(searchedBarcode, req, res, customerID);
     }
 
     
-    else if (searchedCatagory){
+    else if (searchedCatagory !== ""){
         searchCatagory(req, res, searchedCatagory, customerID);
     }
 
-    // else if (searchedCity){
-    //     searchCity(req, res, searchedCity, customerID);
+    else if (searchedCity !== ""){
+        searchCity(req, res, searchedCity, customerID);
+    }
+
+    // else if (searchedState !== ""){
+    //     searchState(req, res, searchedCity, customerID);
     // }
 
-    searchCity(req, res, searchedCity, customerID);
+    else{
+        searchALL(req, res, customerID)
+    }
+
     
     
-    // searchALL(req, res, customerID)
+
 
 
 }
@@ -53,18 +61,20 @@ const searchALL = (req, res, customerID) => {
 
     db.all(sql, (err, rows) => {
         if (rows !== undefined) {
-            return res.render("results", {user: req.session.user, packages:rows, id: customerID});
+            if (rows.length > 1)
+            return res.render("results",  {user: req.session.user, packages: rows, id: customerID});
+        return res.render("results",  {user: req.session.user, packages: [rows], id: customerID});
         }
     })
 
 }
 
 //if the customer wants to search by "only" the barcode
-const searchBarcode = (searchedBarcode, req, res) => {
+const searchBarcode = (searchedBarcode, req, res, customerId) => {
     sql = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, p.distenation FROM PACKAGE p INNER JOIN CUSTOMER c ON p.sender_ID = c.customer_id WHERE p.barcode = ${searchedBarcode}`;
     db.get(sql, (err, rows) => {
         if (rows !== undefined) {
-            return res.render("results", {user: req.session.user, packages: [rows]});
+            return res.render("results", {user: req.session.user, packages: [rows], id: customerId});
         }
     })
 }
@@ -84,10 +94,9 @@ const searchCatagory = (req, res, searchedCatagory, customerId) => {
     CUSTOMER c ON p.receiver_ID = c.customer_id 
     WHERE p.sender_ID = ${customerId} AND p.barcode = (SELECT barcode FROM ${searchedCatagory})`
 
-    // sql = `SELECT c.barcode,p.delivery_date, p.distenation FROM ${searchedCatagory} c INNER JOIN PACKAGE ON p.barcode = c.barcode WHERE p.receiverID = ${customerId} OR p.senderID = ${customerId}`;
     db.all(sql, (err, rows) => {
         if (rows !== undefined) {
-            return res.render("results", {user: req.session.user, packages: rows, id: customerId});
+            return res.render("results",  {user: req.session.user, packages: rows, id: customerId});
         }
     })
 
@@ -99,21 +108,48 @@ const searchCity = (req, res, searchedCity, customerId) => {
     sql = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, distenation, p.sender_ID FROM PACKAGE p 
     INNER JOIN 
     CUSTOMER c ON p.sender_ID = c.customer_id 
-    WHERE p.distenation = ? AND p.receiver_ID = ${customerId}
+    WHERE p.distenation = "${searchedCity}" AND p.receiver_ID = ${customerId}
      
     UNION
 
-    SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, distenation, p.sender_ID FROM PACKAGE p 
+    SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, p.distenation, p.sender_ID FROM PACKAGE p 
     INNER JOIN 
     CUSTOMER c ON p.receiver_ID = c.customer_id 
-    WHERE distenation = ? AND p.sender_ID = ${customerId}`;
+    WHERE distenation = "${searchedCity}" AND p.sender_ID = ${customerId}`;
 
     
-    db.get(sql, [searchedCity], (err, rows) => {
+    db.get(sql, (err, rows) => {
         if (rows !== undefined) {
-            console.log(rows)
-            return res.render("results", {user: req.session.user, packages: rows, id: customerId});
-        } else if (err) return console.log(err.message);
+            if (rows.length > 1)
+                return res.render("results",  {user: req.session.user, packages: rows, id: customerId});
+            return res.render("results",  {user: req.session.user, packages: [rows], id: customerId});
+        }
+    })
+
+}
+
+//if the customer wants to search by "only" the city
+const searchState = (req, res, searchedState, customerId) => {
+
+    sql = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, distenation, p.sender_ID FROM PACKAGE p 
+    INNER JOIN 
+    CUSTOMER c ON p.sender_ID = c.customer_id 
+    WHERE p.distenation = "${searchedState}" AND p.receiver_ID = ${customerId}
+     
+    UNION
+
+    SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, p.distenation, p.sender_ID FROM PACKAGE p 
+    INNER JOIN 
+    CUSTOMER c ON p.receiver_ID = c.customer_id 
+    WHERE distenation = "${searchedState}" AND p.sender_ID = ${customerId}`;
+
+    
+    db.get(sql, (err, rows) => {
+        if (rows !== undefined) {
+            if (rows.length > 1)
+                return res.render("results",  {user: req.session.user, packages: rows, id: customerId});
+            return res.render("results",  {user: req.session.user, packages: [rows], id: customerId});
+        }
     })
 
 }
