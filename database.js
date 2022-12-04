@@ -56,25 +56,25 @@ sql = `CREATE TABLE IF NOT EXISTS LOCATION(
         db.run(sql);
 
         // PACKAGE
-sql = `CREATE TABLE IF NOT EXISTS PACKAGE (
-        barcode INTEGER PRIMARY KEY AUTOINCREMENT,
-        delivery_date  TEXT,
-        weight  DECIMAL,
-        distenation  TEXT,
-        receiver_ID  INTEGER NOT NULL,
-        sender_ID  INTEGER NOT NULL,
-        locationNum  INTEGER NOT NULL,
-        retail_ID  INTEGER NOT NULL,
-        price DECIMAL,
-        length DECIMAL,
-        depth DECIMAL,
-        height DECIMAL,
-        FOREIGN KEY (sender_ID) REFERENCES CUSTOMER(customer_id),
-        FOREIGN KEY (receiver_ID) REFERENCES CUSTOMER(customer_id),
-        FOREIGN KEY (locationNum) REFERENCES LOCATION(location_num),
-        FOREIGN KEY (retail_ID) REFERENCES RETAIL_CENTER(retail_ID)
-        )`; 
-        db.run(sql);
+// sql = `CREATE TABLE IF NOT EXISTS PACKAGE (
+//         barcode INTEGER PRIMARY KEY AUTOINCREMENT,
+//         delivery_date  TEXT,
+//         weight  DECIMAL,
+//         distenation  TEXT,
+//         receiver_ID  INTEGER NOT NULL,
+//         sender_ID  INTEGER NOT NULL,
+//         locationNum  INTEGER,
+//         retail_ID  INTEGER,
+//         price DECIMAL,
+//         length DECIMAL,
+//         depth DECIMAL,
+//         height DECIMAL,
+//         FOREIGN KEY (sender_ID) REFERENCES CUSTOMER(customer_id),
+//         FOREIGN KEY (receiver_ID) REFERENCES CUSTOMER(customer_id),
+//         FOREIGN KEY (locationNum) REFERENCES LOCATION(location_num),
+//         FOREIGN KEY (retail_ID) REFERENCES RETAIL_CENTER(retail_ID)
+//         )`; 
+//         db.run(sql);
 
         // HISTORY
 sql = `CREATE TABLE IF NOT EXISTS HISTORY( 
@@ -279,11 +279,61 @@ sql = `CREATE TABLE IF NOT EXISTS TRUCK(
 
 
 
+
+// sql = `UPDATE PACKAGE SET receiver_ID = 5 WHERE barcode = 6`;
+// db.run(sql);
+
+// sql = `SELECT * FROM PACKAGE`
+// db.all(sql, [], (err, rows) => {
+//         if (err) return console.log(err.message);
+//         rows.forEach((row) => { console.log(row) });
+// });
+
 // sql = `SELECT * FROM CUSTOMER`
 // db.all(sql, [], (err, rows) => {
 //         if (err) return console.log(err.message);
 //         rows.forEach((row) => { console.log(row) });
 // });
+
+sql = `SELECT customer_id FROM CUSTOMER WHERE email = "ali-alsadah1941@hotmail.com"`;
+
+
+const x = db.get(sql, (err, row) => {return row.customer_id})
+console.log(x)
+
+
+
+// sql = `DELETE FROM PACKAGE WHERE barcode = 5`
+// db.run(sql);
+
+// sql = `CREATE TABLE IF NOT EXISTS PACKAGE2 (
+//         barcode INTEGER PRIMARY KEY AUTOINCREMENT,
+//         delivery_date  TEXT,
+//         weight  DECIMAL,
+//         distenation  TEXT,
+//         receiver_ID  INTEGER NOT NULL,
+//         sender_ID  INTEGER NOT NULL,
+//         locationNum  INTEGER,
+//         retail_ID  INTEGER,
+//         price DECIMAL,
+//         length DECIMAL,
+//         depth DECIMAL,
+//         height DECIMAL,
+//         FOREIGN KEY (sender_ID) REFERENCES CUSTOMER(customer_id),
+//         FOREIGN KEY (receiver_ID) REFERENCES CUSTOMER(customer_id),
+//         FOREIGN KEY (locationNum) REFERENCES LOCATION(location_num),
+//         FOREIGN KEY (retail_ID) REFERENCES RETAIL_CENTER(retail_ID)
+//         )`; 
+//         db.run(sql);
+
+// sql = `INSERT INTO PACKAGE2 (delivery_date, weight, distenation, receiver_ID, sender_ID, locationNum, retail_ID, price, length, depth, height)
+//    SELECT delivery_date, weight, distenation, receiver_ID, sender_ID, locationNum, retail_ID, price, length, depth, height FROM PACKAGE`;
+//    db.run(sql);
+// sql = `DROP TABLE PACKAGE`;
+// db.run(sql);
+// sql = `ALTER TABLE PACKAGE3 RENAME TO PACKAGE`;
+// db.run(sql);
+
 
 // sql = `SELECT customer_id FROM USER_ACCOUNT WHERE account_id = ?`;
 // db.all(sql, [1], (err, rows) => {

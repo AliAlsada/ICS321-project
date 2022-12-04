@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "aa-sqlite": "^1.0.29",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",

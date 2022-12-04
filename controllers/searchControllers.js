@@ -1,5 +1,5 @@
 const db = require("./dbConnection");
-db.get("PRAGMA foreign_keys = ON")
+db.get("PRAGMA foreign_keys = ON");
 
 
 const searchResults = (req, res) => {
@@ -7,14 +7,10 @@ const searchResults = (req, res) => {
     const {searchedBarcode, searchedCatagory, searchedCity, searchedState, searchedCondition} = req.body;
     const customerID = getCustomerID(req, res);
     
-
-    
-    
     if (searchedBarcode !== ""){
         searchBarcode(searchedBarcode, req, res, customerID);
     }
 
-    
     else if (searchedCatagory !== ""){
         searchCatagory(req, res, searchedCatagory, customerID);
     }
@@ -30,15 +26,7 @@ const searchResults = (req, res) => {
     else{
         searchALL(req, res, customerID)
     }
-
-    
-    
-
-
-
 }
-
-
 
 
 //this method will return the id of the customer who searched for a package 
