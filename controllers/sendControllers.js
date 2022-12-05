@@ -1,59 +1,80 @@
-// const db = require("./dbConnection");
-// db.get("PRAGMA foreign_keys = ON");
-const sqlite3 = require("aa-sqlite");
 
 
+const sqlite3 = require('sqlite3')
+const sqlite = require('sqlite')
 
-// connection();
+
+const getDbConnection = async () => {
+    return await sqlite.open({
+        filename: 'kfumex.db',
+        driver: sqlite3.Database
+    })
+}
 
 
-
-const savePackage = (req, res) => {
+const shipPackage = async (req, res) => {
     const {country, city, fname, lname, 
         phone, email, weight, value, catagory, deliveryDate} = req.body;
 
-    const senderID = getSenderID(req)
+    const senderID = await getSenderID(req)
+
+    await saveCustomer(req, res)
+    await savePackage(req, res, senderID)
+
+}
+
+
+const saveCustomer = async (req, res) =>{
+    const {country, city, fname, lname, 
+        phone, email, weight, value, catagory, deliveryDate} = req.body;
+
+    const db = await getDbConnection();
+    sql = `INSERT INTO CUSTOMER(Fname, Lname, email, phone, country, city)  VALUES ("${fname}","${lname}","${email}","${phone}","${country}","${city}")`;
+    const meta = await db.run(sql)
+    await db.close()
+    return meta
+
+}
+
+const savePackage = async (req, res, senderID) =>{
+    const {country, city, fname, lname, 
+        phone, email, weight, value, catagory, deliveryDate} = req.body;
     
-    // sql_customer = `INSERT INTO CUSTOMER(Fname, Lname, email, phone, country, city)  VALUES (?,?,?,?,?,?)`;
-    // sql_package = `INSERT INTO PACKAGE(delivery_date, weight, distenation, receiver_ID, sender_ID, price) VALUES (?,?,?,?,?,?)`;
-    // // sql_state = `INSERT INTO IN_TRANSIT(barcode)  VALUES (?)`;
+    const receiverID = await getReceiverID(email);
 
-    // db.run(sql_customer, [fname, lname, email, phone, country, city], function(err) {
-    //     if (err) {
-    //       return console.error(err.message);
-    //     }
-    //     console.log(`Rows inserted ${this.changes}`);
-    //   });
+    const db = await getDbConnection();
+    sql= `INSERT INTO PACKAGE(delivery_date, weight, distenation, receiver_ID, sender_ID, price) VALUES ("${deliveryDate}","${weight}","${city}","${receiverID}","${senderID}","${value}")`;
+    const meta = await db.run(sql);
+    
+    sql= `INSERT INTO IN_TRANSIT(barcode) VALUES (${meta.lastID})`;
+    await db.run(sql);
 
-    // const receiverID = getReceiverID(email);
+    await db.close()
+    return meta
 
-    // db.run(sql_package, [deliveryDate, weight, city, receiverID, senderID, value], function(err) {
-    //     if (err) {
-    //       return console.error(err.message);
-    //     }
-    //     console.log(`Rows inserted ${this.changes}`);
-    //   });
-        
 }
 
 
 //this method will return the id of the customer who searched for a package 
 const getSenderID = async (req) => {
-    sql = `SELECT customer_id FROM CUSTOMER WHERE customer_id = ${req.session.user.id}`;
-    const rows = await db.get(sql);
-    await db.close();
-    console.log(rows);  
+    const db = await getDbConnection();
+    const row = await db.get(`SELECT customer_id FROM USER_ACCOUNT WHERE account_id = ${req.session.user.id}`)
+    db.close();
+    console.log(row)
+    return row["customer_id"];
 }
 
-// const getReceiverID = async (email) => {
-
-//     sql = `SELECT customer_id FROM CUSTOMER WHERE email = ?`;
-//     return db.get(sql, [email], (err, row) => {row.customer_id})
+const getReceiverID = async (email) => {
+    const db = await getDbConnection();
+    const row = await db.get(`SELECT customer_id FROM CUSTOMER WHERE email = "${email}"`);
+    db.close();
+    console.log(row)
+    return row["customer_id"];
     
-// } 
+} 
 
 
 
 module.exports = {
-    savePackage,
+    shipPackage,
 }

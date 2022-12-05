@@ -1,21 +1,32 @@
 const db = require("./dbConnection");
-db.get("PRAGMA foreign_keys = ON");
+const sqlite3 = require('sqlite3')
+const sqlite = require('sqlite')
 
 
-const searchResults = (req, res) => {
+const getDbConnection = async () => {
+    return await sqlite.open({
+        filename: 'kfumex.db',
+        driver: sqlite3.Database
+    })
+}
+
+const searchResults = async (req, res) => {
 
     const {searchedBarcode, searchedCatagory, searchedCity, searchedState, searchedCondition} = req.body;
-    const customerID = getCustomerID(req, res);
+    const customerID = await getCustomerID(req);
     
     if (searchedBarcode !== ""){
+ 
         searchBarcode(searchedBarcode, req, res, customerID);
     }
 
     else if (searchedCatagory !== ""){
+
         searchCatagory(req, res, searchedCatagory, customerID);
     }
 
     else if (searchedCity !== ""){
+
         searchCity(req, res, searchedCity, customerID);
     }
 
@@ -30,12 +41,11 @@ const searchResults = (req, res) => {
 
 
 //this method will return the id of the customer who searched for a package 
-const getCustomerID = (req, res) => {
-
-    id;
-    sql = `SELECT customer_id FROM USER_ACCOUNT WHERE account_id = ${req.session.user.id}`;
-    db.get(sql, (err, row) => {id = row.customer_id})
-    return id;
+const getCustomerID =  async (req) => {
+    const db = await getDbConnection();
+    const row = await db.get(`SELECT customer_id FROM USER_ACCOUNT WHERE account_id = ${req.session.user.id}`)
+    db.close();
+    return row["customer_id"];
 }
 
 
@@ -55,10 +65,12 @@ const searchALL = (req, res, customerID) => {
         }
     })
 
+
 }
 
 //if the customer wants to search by "only" the barcode
 const searchBarcode = (searchedBarcode, req, res, customerId) => {
+
     sql = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, p.distenation FROM PACKAGE p INNER JOIN CUSTOMER c ON p.sender_ID = c.customer_id WHERE p.barcode = ${searchedBarcode}`;
     db.get(sql, (err, rows) => {
         if (rows !== undefined) {
@@ -69,6 +81,7 @@ const searchBarcode = (searchedBarcode, req, res, customerId) => {
 
 //if the customer wants to search by "only" the catagory
 const searchCatagory = (req, res, searchedCatagory, customerId) => {
+
 
     sql = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, distenation, p.sender_ID FROM PACKAGE p 
     INNER JOIN 
@@ -88,10 +101,12 @@ const searchCatagory = (req, res, searchedCatagory, customerId) => {
         }
     })
 
+
 }
 
 //if the customer wants to search by "only" the city
 const searchCity = (req, res, searchedCity, customerId) => {
+
 
     sql = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, distenation, p.sender_ID FROM PACKAGE p 
     INNER JOIN 
@@ -113,6 +128,7 @@ const searchCity = (req, res, searchedCity, customerId) => {
             return res.render("results",  {user: req.session.user, packages: [rows], id: customerId});
         }
     })
+
 
 }
 

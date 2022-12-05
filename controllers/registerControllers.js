@@ -4,6 +4,7 @@ const db = require("./dbConnection");
 db.get("PRAGMA foreign_keys = ON")
 
 
+
 const registerAuth = async (req, res) => {
     //get the data from the user
     const {email, firstName, lastName, password, country, city, street, phone} = req.body
@@ -62,6 +63,8 @@ const registerAuth = async (req, res) => {
             res.render("signUp", {message: 'test'});
         }
     });
+
+    db.close()
 }
 
 

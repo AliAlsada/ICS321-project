@@ -39,6 +39,9 @@ app.use("/search", searchRouter);
 const sendRouter = require("./routes/sendRoutes");
 app.use("/send", sendRouter);
 
+const trackRouter = require("./routes/trackRoutes");
+app.use("/track", trackRouter);
+
 
 
 app.listen(3000);

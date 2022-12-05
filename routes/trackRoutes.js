@@ -1,6 +1,5 @@
-
 const express = require("express");
-const logInControllers = require("../controllers/logInControllers");
+const trackControllers = require("../controllers/trackControllers");
 
 const router = express.Router();
 
@@ -9,10 +8,10 @@ router.use(express.json());
 
 
 router.get("/", (req, res) => {
-    res.render("logIn");
+    res.render("track");
 })
 
-router.post("/auth" , logInControllers.userLogInAuth);
-router.post("/auth" , logInControllers.adminLogInAuth);
+
+router.get("/:barcode", trackControllers.trackResults)
 
 module.exports = router;
