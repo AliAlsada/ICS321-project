@@ -37,6 +37,7 @@
 
   .form{
     background-color: #f3f3f3;
+    max-height: 100%;
   }
   
   .width-50 {

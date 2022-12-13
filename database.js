@@ -35,28 +35,34 @@ db.get("PRAGMA foreign_keys = ON")
 
 
 
-// // CUSTOMER     
-// sql = `CREATE TABLE IF NOT EXISTS CUSTOMER(
-//         customer_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-//         email TEXT NOT NULL UNIQUE,
-//         Fname TEXT NOT NULL, 
-//         Lname TEXT NOT NULL, 
-//         phone INTEGER, 
-//         country TEXT, 
-//         city TEXT, 
-//         street TEXT, 
-//         IBAN TEXT UNIQUE)`;
+// CUSTOMER     
+sql = `CREATE TABLE IF NOT EXISTS CUSTOMER(
+        customer_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+        account_id INTEGER,
+        email TEXT NOT NULL UNIQUE,
+        Fname TEXT NOT NULL, 
+        Lname TEXT NOT NULL, 
+        phone INTEGER, 
+        country TEXT, 
+        city TEXT, 
+        street TEXT, 
+        IBAN TEXT UNIQUE,
+        FOREIGN KEY (account_id) REFERENCES ACCOUND(account_id)
+        
+        )`;
 
-// db.run(sql);
+db.run(sql);
 
         // EMPLOYEE
 sql = `CREATE TABLE IF NOT EXISTS EMPLOYEE (
         employee_ID CHAR(10),
+        account_id INTEGER,
         email TEXT NOT NULL UNIQUE,
         Fname TEXT NOT NULL,
         Lname TEXT NOT NULL,
         salary DECIMAL,
         PRIMARY KEY (employee_ID)
+        FOREIGN KEY (account_id) REFERENCES ACCOUNT(account_id)
         )`;
 db.run(sql);
 
@@ -153,31 +159,14 @@ db.all(sql, [], (err, rows) => {
 //         )`; 
 //         db.run(sql);
 
-// sql = `CREATE TABLE IF NOT EXISTS ACCOUNT (
-//         account_id INTEGER PRIMARY KEY AUTOINCREMENT,
-//         email TEXT NOT NULL,
-//         password TEXT NOT NULL,
-//         UNIQUE (email)
-//         )`; 
-//         db.run(sql); 
+sql = `CREATE TABLE IF NOT EXISTS ACCOUNT (
+        account_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        email TEXT NOT NULL,
+        password TEXT NOT NULL,
+        UNIQUE (email),
+        )`; 
+        db.run(sql); 
 
-// sql = `CREATE TABLE IF NOT EXISTS ADMIN_ACCOUNT (
-//         account_id INTEGER NOT NULL,
-//         employee_ID CHAR(10) NOT NULL,
-//         FOREIGN KEY (account_id) REFERENCES ACCOUNT(account_id),
-//         FOREIGN KEY (employee_ID) REFERENCES EMPLOYEE(employee_ID)
-//         PRIMARY KEY (account_id,employee_ID)
-//         )`; 
-//         db.run(sql); 
-
-// sql = `CREATE TABLE IF NOT EXISTS USER_ACCOUNT (
-//         account_id INTEGER NOT NULL,
-//         customer_id INTEGER NOT NULL,
-//         FOREIGN KEY (account_id) REFERENCES ACCOUNT(account_id),
-//         FOREIGN KEY (customer_id) REFERENCES CUSTOMER(customer_id)
-//         PRIMARY KEY (account_id,customer_id)
-//         )`; 
-//         db.run(sql); 
 
 // sql = `CREATE TABLE IF NOT EXISTS REMOVED_PACKAGES (
 //         barcode INTEGER NOT NULL,

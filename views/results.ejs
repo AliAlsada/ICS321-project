@@ -17,10 +17,7 @@
 
         <% if (packages.length > 0) { %> 
             <% packages.forEach(package => { %>
-
-
                     <div class="package">
-            
                         <h3>Barcode: <%= package.barcode%></h3>
                         <ul>
                             <% if (package.sender_ID === id) { %>
