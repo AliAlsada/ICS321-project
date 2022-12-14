@@ -1,0 +1,51 @@
+*{
+    font-family: 'Lato', sans-serif;
+}
+
+:root{
+    --yellow : #FFC857;
+    --dark-yellow : #ffbb33;
+    --red: #c5283d;
+    --white: #ffffff;
+    --light-white: #cdcdcd;
+    --body-color: #323031;
+}
+
+
+body{
+    background-color: var(--body-color);
+    margin: 0 auto;
+}
+
+table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+table thead tr {
+    background-color: var(--dark-yellow);
+    color: #000000;
+    text-align: left;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    color: white;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: #1c0000;
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--yellow);
+}

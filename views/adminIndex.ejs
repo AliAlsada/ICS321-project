@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/admin.css">
+    <title>admin</title>
+</head>
+
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>name</th>
+                <th>phone</th>
+                <th>country</th>
+                <th>city</th>
+                <th>Packages</th>
+                <th>remove</th>
+            </tr>
+
+
+        </thead>
+
+        <tbody>
+            <% customers.forEach(customer=> { %>
+                <tr>
+                    <th>
+                        <%=customer.customer_id%>
+                    </th>
+                    <th>
+                        <%=customer.email%>
+                    </th>
+                    <th>"<%=customer.Fname%>
+                            <%=customer.Lname%>"</th>
+                    <th>
+                        <%=customer.phone%>
+                    </th>
+                    <th>
+                        <%=customer.country%>
+                    </th>
+                    <th>
+                        <%=customer.city%>
+                    </th>
+                    <th>
+                        <button>Packages</button>
+                    </th>
+                    <th>
+                        <button>remove</button>
+                    </th>
+                </tr>
+    
+                <% }); %>
+        </tbody>
+
+    </table>
+
+</body>
+
+</html>

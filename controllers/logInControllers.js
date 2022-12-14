@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const logInQueries = require("../models/logIn")
+const adminQueries = require("../models/admin")
 
 
 
@@ -28,23 +29,22 @@ const logInAuth = async (req, res) => {
 
     else if (adminInfo) {
         //unhash password
-        bcrypt.compare(logedPassword, adminInfo.password, (err, result) => {
-            if (result) {
-                id = adminInfo.account_id
+        if (logedPassword === adminInfo.password){
+            id = adminInfo.account_id
 
-                req.session.authenticated = true;
-                req.session.user = { id, email };
+            req.session.authenticated = true;
+            req.session.user = { id, email };
 
-                //------------------------------------------------------------------------
-                res.render("adminPage", { user: req.session.user });
+            //------------------------------------------------------------------------
+            res.render("adminIndex", { user: req.session.user, customers: await adminQueries.getAllCustomers()});
+        }
 
-            }
-        });
 
     }
 
     else res.render("logIn", { message: 'Password is not correct' });
 }
+
 
 
 

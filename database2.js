@@ -255,3 +255,38 @@ sql = `CREATE TABLE IF NOT EXISTS TRUCK(
 // db.run("DROP TABLE IF EXISTS TRUCK");
 // db.run("DROP TABLE IF EXISTS PLANE");
 // db.run("DROP TABLE IF EXISTS FRAGILE");
+
+// sql = `CREATE TABLE IF NOT EXISTS EMPLOYEE (
+//         employee_ID CHAR(10),
+//         account_id INTEGER,
+//         email TEXT NOT NULL UNIQUE,
+//         Fname TEXT NOT NULL,
+//         Lname TEXT NOT NULL,
+//         salary DECIMAL,
+//         PRIMARY KEY (employee_ID),
+//         FOREIGN KEY (account_id) REFERENCES ACCOUNT(account_id)
+//         )`;
+//     db.run(sql);
+
+
+
+
+        
+// sql = `INSERT INTO EMPLOYEE(employee_ID, email, Fname, Lname, salary)  VALUES (?,?,?,?,?)`;
+// db.run( sql, ["e201960570", "admin@gmail.com", "Ali", "Alsada", 20000], (err) => {
+//         if (err) return console.log(err.message);
+// });  
+
+// sql = `INSERT INTO ACCOUNT(email, password, rule)  VALUES (?,?,?)`;
+// db.run( sql, ["admin@gmail.com", "admin", "admin"], (err) => {
+//         if (err) return console.log(err.message);
+// });   
+
+// sql = `SELECT * FROM ACCOUNT`
+// db.all(sql, [], (err, rows) => {
+//         if (err) return console.log(err.message);
+//         rows.forEach((row) => {console.log(row)});
+// });
+
+// sql = `UPDATE EMPLOYEE SET account_id = 3 WHERE employee_ID = "e201960570"`;
+// db.run(sql)
