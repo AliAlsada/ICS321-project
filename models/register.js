@@ -4,21 +4,21 @@ const sqlite = require('sqlite')
 
 const getDbConnection = async () => {
     return await sqlite.open({
-        filename: 'recipes_store.db3',
+        filename: 'kfumex2.db',
         driver: sqlite3.Database
     })
 }
 
-const validatePhone = async (phone) =>{
+const validatePhone = async (customerPhone) =>{
     const db = await getDbConnection();
-    const phone  = await db.get(`SELECT phone FROM CUSTOMER WHERE phone = ${phone}`);
+    const phone  = await db.get(`SELECT phone FROM CUSTOMER WHERE phone = ${customerPhone}`);
     await db.close();
     return phone;
 }
 
-const validateEmail = async (email) =>{
+const validateEmail = async (customerEmail) =>{
     const db = await getDbConnection();
-    const email  = await db.get(`SELECT email FROM CUSTOMER WHERE phone = ${email}`);
+    const email  = await db.get(`SELECT email FROM CUSTOMER WHERE email = '${customerEmail}'`);
     await db.close();
     return email;
 }
@@ -40,12 +40,14 @@ const createCustomerAccount = async (email, password, customer_id) => {
     const db = await getDbConnection();
 
     //create account
-    const sql = `INSERT INTO ACCOUNT ('email', 'password') values ('${email}', '${password}')`;
+    const sql = `INSERT INTO ACCOUNT ('email', 'password', 'rule') VALUES ('${email}', '${password}', 'user')`;
     const meta = await db.run(sql);
+    const account_id = meta.lastID;
 
     //add account key to the customer 
-    const sql2 = `INSERT INTO CUSTOMER ('account_id') values (${account_id}) WHERE customer_id = ${customer_id})`;
-    await db.run(sql);
+    // const sql2 = `INSERT INTO CUSTOMER ('account_id') VALUES (${account_id}) WHERE customer_id = ${customer_id})`;
+    const sql2 = `UPDATE CUSTOMER SET account_id = ${account_id} WHERE customer_id = ${customer_id}`;
+    await db.run(sql2);
 
     await db.close();
 }
