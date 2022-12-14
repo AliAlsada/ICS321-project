@@ -18,11 +18,12 @@ const saveCustomer = async (req, res) =>{
 
     try {
         sql = `INSERT INTO CUSTOMER(Fname, Lname, email, phone, country, city)  VALUES ("${fname}","${lname}","${email}","${phone}","${country}","${city}")`;
-        const meta = await db.run(sql)
+        await db.run(sql)
         await db.close()
         
     } catch (error) {
         console.log("this customer has an account")
+        await db.close()
     }
 
 
@@ -49,14 +50,7 @@ const savePackage = async (req, res, senderID) =>{
 }
 
 
-//this method will return the id of the customer who searched for a package 
-const getSenderID = async (req) => {
-    const db = await getDbConnection();
-    const row = await db.get(`SELECT customer_id FROM CUSTOMER WHERE account_id = ${req.session.user.id}`)
-    db.close();
-    console.log(row)
-    return row["customer_id"];
-}
+
 
 const getReceiverID = async (email) => {
     const db = await getDbConnection();
@@ -70,10 +64,7 @@ const getReceiverID = async (email) => {
 
 
 
-
-
-
-module.exports = {saveCustomer, savePackage, getSenderID};
+module.exports = {saveCustomer, savePackage};
 
 
 

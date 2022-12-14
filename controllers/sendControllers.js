@@ -7,7 +7,8 @@ const shipPackage = async (req, res) => {
     const {country, city, fname, lname, 
         phone, email, weight, value, catagory, deliveryDate} = req.body;
 
-    const senderID = await sendQueries.getSenderID(req)
+    // const senderID = await sendQueries.getSenderID(req)
+    const senderID = req.session.user.id
 
     await sendQueries.saveCustomer(req, res);
     await sendQueries.savePackage(req, res, senderID);
