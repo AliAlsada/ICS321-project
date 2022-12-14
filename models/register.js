@@ -53,7 +53,7 @@ const createCustomerAccount = async (email, password, customer_id) => {
 
 
 
-module.exports = {}
+module.exports = {validatePhone, validateEmail, createCustomer, createCustomerAccount};
 
 
 

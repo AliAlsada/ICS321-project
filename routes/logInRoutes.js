@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 
 //cannot have two requests on the same url. I should auth both user and admin on the same controller
 //using the same middleware
-router.post("/auth" , [userLogInAuth, adminLogInAuth], logInControllers.userLogInAuth);
+router.post("/auth", logInControllers.userLogInAuth);
 
 // router.post("/auth" , adminLogInAuth, logInControllers.adminLogInAuth);
 

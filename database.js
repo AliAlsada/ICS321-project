@@ -67,6 +67,16 @@ sql = `CREATE TABLE IF NOT EXISTS EMPLOYEE (
 db.run(sql);
 
 
+sql = `CREATE TABLE IF NOT EXISTS ACCOUNT (
+        account_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        email TEXT NOT NULL,
+        password TEXT NOT NULL,
+        UNIQUE (email),
+        )`; 
+        db.run(sql); 
+
+
+
 
 
 // sql = `INSERT INTO EMPLOYEE(employee_ID, email, Fname, Lname, salary)  VALUES (?,?,?,?,?)`;
@@ -159,13 +169,6 @@ db.all(sql, [], (err, rows) => {
 //         )`; 
 //         db.run(sql);
 
-sql = `CREATE TABLE IF NOT EXISTS ACCOUNT (
-        account_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        email TEXT NOT NULL,
-        password TEXT NOT NULL,
-        UNIQUE (email),
-        )`; 
-        db.run(sql); 
 
 
 // sql = `CREATE TABLE IF NOT EXISTS REMOVED_PACKAGES (
