@@ -1,16 +1,17 @@
 const express = require("express");
-const searchControllers = require("../controllers/searchControllers");
+const trackControllers = require("../controllers/trackControllers");
 
 const router = express.Router();
 
 router.use(express.urlencoded({extended: 'false'}));
 router.use(express.json());
 
+
 router.get("/", (req, res) => {
-    res.render("search", {user: req.session.user});
+    res.render("track");
 })
 
-router.post("/results" , searchControllers.searchResults);
 
+router.get("/:barcode", trackControllers.trackResults)
 
 module.exports = router;

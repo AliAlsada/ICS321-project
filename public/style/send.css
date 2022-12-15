@@ -14,7 +14,6 @@
   }
   
   body {
-    font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     display: grid;
     place-items: center;
@@ -37,6 +36,7 @@
 
   .form{
     background-color: #f3f3f3;
+    max-height: 100%;
   }
   
   .width-50 {

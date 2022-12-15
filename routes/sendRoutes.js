@@ -11,6 +11,6 @@ router.get("/", (req, res) => {
     res.render("send");
 })
 
-// router.post("/save" , sendControllers)
+router.post("/save" , sendControllers.shipPackage)
 
 module.exports = router;

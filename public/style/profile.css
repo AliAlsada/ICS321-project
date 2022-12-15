@@ -1,0 +1,24 @@
+body{
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+    background-color: #323031; 
+    color: aliceblue;
+}
+
+
+.contanior{
+    display: grid;
+    gap: 1.5rem;
+    grid-auto-columns: 1fr 1fr;
+    grid-template-areas:
+     'one'
+     'two'
+     'three'
+     'four'
+     'five';
+  
+    padding-block: 2rem;
+    width: min(95%, 70rem);
+    margin-inline: auto;
+}
