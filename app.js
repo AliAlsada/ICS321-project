@@ -32,7 +32,6 @@ app.use("/index", indexRouter);
 const signUpRouter = require("./routes/registerRoutes");
 app.use("/signUp", signUpRouter);
 
-
 const searchRouter = require("./routes/searchRoutes");
 app.use("/search", searchRouter);
 

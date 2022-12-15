@@ -1,74 +1,53 @@
 const bcrypt = require("bcryptjs");
-const db = require("./dbConnection");
-db.get("PRAGMA foreign_keys = ON");
+const logInQueries = require("../models/logIn")
+const adminQueries = require("../models/admin")
 
 
 
-
-
-const userLogInAuth = (req, res) => {
-
+const logInAuth = async (req, res) => {
     const logedPassword = req.body.password.toString()
     const email = req.body.email
-    
 
-    sql = `SELECT a.account_id, a.email, a.password FROM ACCOUNT a INNER JOIN USER_ACCOUNT u WHERE email = ?`;
-    db.get(sql, [email], (err, row) => {
 
-        //check if the email is in the database
-        if (row == undefined) return res.render("logIn", {message: 'this email is not registered'});
- 
-        //validate password
-        bcrypt.compare(logedPassword, row.password, (err, result) => {        
+    const userInfo = await logInQueries.getCustomerAccountInfo(email);
+    const adminInfo = await logInQueries.getAdminAccountInfo(email);
+
+    if (userInfo) {
+
+        //unhash password
+        bcrypt.compare(logedPassword, userInfo.password, (err, result) => {
             if (result) {
-                id = row.account_id
+                id = userInfo.account_id
 
                 req.session.authenticated = true;
-                req.session.user = {id,email};
-                res.render("index", {user: req.session.user});
-                
+                req.session.user = { id, email };
+                res.render("index", { user: req.session.user });
+
             }
-            // else res.render("logIn", {message: 'Password is not correct'});
-        })
-    })
+        });
+    }
 
-    
-
-
-}
-
-
-
-const adminLogInAuth = (req, res) => {
-
-    const logedPassword = req.body.password.toString()
-    const email = req.body.email
-    
-
-    sql = `SELECT a.account_id, a.email, a.password FROM ACCOUNT a INNER JOIN ADMIN_ACCOUNT u WHERE email = ?`;
-    db.get(sql, [email], (err, row) => {
-
-        //check if the email is in the database
-        if (row == undefined) return res.render("logIn", {message: 'this email is not registered'});
- 
-        //validate password
-
-        if (logedPassword === row.password){
-            console.log(row.password);
-            id = row.account_id
+    else if (adminInfo) {
+        //unhash password
+        if (logedPassword === adminInfo.password){
+            id = adminInfo.account_id
 
             req.session.authenticated = true;
-            req.session.user = {id,email};
-            res.render("index", {user: req.session.user});
-            
-        } else res.render("logIn", {message: 'Password is not correct'});
-    })
+            req.session.user = { id, email };
+
+            //------------------------------------------------------------------------
+            res.render("adminIndex", { user: req.session.user, customers: await adminQueries.getAllCustomers()});
+        }
+
+
+    }
+
+    else res.render("logIn", { message: 'Password is not correct' });
 }
 
 
 
 
 module.exports = {
-    userLogInAuth,
-    adminLogInAuth
+    logInAuth,
 }
