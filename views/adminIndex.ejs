@@ -32,7 +32,7 @@
 
         <tbody>
             <% customers.forEach(customer=> { %>
-                <tr>
+                <tr id="<%=customer.customer_id%>/">
                     <th class=<%=customer.customer_id%>>
                         <%=customer.customer_id%>
                     </th>

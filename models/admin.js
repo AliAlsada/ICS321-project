@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3')
 const sqlite = require('sqlite')
-let alert = require('alert'); 
+let alert = require('alert');
 
 
 const getDbConnection = async () => {
@@ -10,28 +10,28 @@ const getDbConnection = async () => {
     })
 }
 
-const getAllCustomers = async () =>{
+const getAllCustomers = async () => {
     const db = await getDbConnection();
-    const customers  = await db.all(`SELECT * FROM CUSTOMER`);
+    const customers = await db.all(`SELECT * FROM CUSTOMER`);
     await db.close();
     return customers;
 }
 
-const getCustomer = async (customer_id) =>{
+const getCustomer = async (customer_id) => {
     const db = await getDbConnection();
-    const customer  = await db.all(`SELECT * FROM CUSTOMER WHERE customer_id = ${customer_id}`);
+    const customer = await db.all(`SELECT * FROM CUSTOMER WHERE customer_id = ${customer_id}`);
     await db.close();
     return customer;
 }
 
-const getCustomerAccount = async (customer_id) =>{
+const getCustomerAccount = async (customer_id) => {
     const db = await getDbConnection();
     const customerAccount = await db.get(`SELECT account_id FROM CUSTOMER WHERE customer_id = ${customer_id}`);
     await db.close();
     return customerAccount;
 }
 
-const updateCustomerInfo = async (customerArray) =>{
+const updateCustomerInfo = async (customerArray) => {
 
     //update customer
     const sql = `UPDATE CUSTOMER 
@@ -46,7 +46,7 @@ const updateCustomerInfo = async (customerArray) =>{
     //update account email if the customer has an account
     const customerAccount = await getCustomerAccount(customerArray[0]);
 
-    if (customerAccount){
+    if (customerAccount) {
         try {
             await updateAccountInfo(customerArray[1], customerAccount.account_id);
         } catch (error) {
@@ -54,8 +54,8 @@ const updateCustomerInfo = async (customerArray) =>{
             return;
         }
     }
-    
-        
+
+
     const db = await getDbConnection();
 
     try {
@@ -67,7 +67,7 @@ const updateCustomerInfo = async (customerArray) =>{
     await db.close();
 }
 
-const updateAccountInfo = async (email, customerAccount) =>{
+const updateAccountInfo = async (email, customerAccount) => {
     const sql = `UPDATE ACCOUNT SET email = "${email}" WHERE account_id = ${customerAccount}`;
 
     const db = await getDbConnection();
@@ -76,9 +76,51 @@ const updateAccountInfo = async (email, customerAccount) =>{
 }
 
 
-const updatePackageInfo = async (packageArray) =>{
-    
+const updatePackageInfo = async (packageArray, previousCatagory) => {
+
+
+    const db = await getDbConnection();
+
+
+    //check sender id later------------------------
+    let sql = `UPDATE PACKAGE SET 
+        sender_ID = ${packageArray[3]},    
+        distenation = "${packageArray[4]}",
+        weight = ${packageArray[6]},
+        price = ${packageArray[7]},
+        delivery_date = "${packageArray[8]}"
+        WHERE barcode = ${packageArray[0]}`;
+
+    try {
+        await db.run(sql);
+
+    } catch (error) {
+        console.log("1")    
+    }
+
+    try {
+        //delete the previous
+        sql = `DELETE FROM "${previousCatagory}" WHERE barcode = ${packageArray[0]}`
+        await db.run(sql);
+
+    } catch (error) {
+        console.log(error)
+    }
+
+    try {
+        //insert into
+        sql = `INSERT INTO "${packageArray[5]}" ('barcode') VALUES (${packageArray[0]})`
+        await db.run(sql);
+
+    } catch (error) {
+        console.log(error)
+    }
+
+
+    await db.close();
 }
+
+
 
 
 

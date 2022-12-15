@@ -4,6 +4,7 @@ let table = document.getElementById("usersTable");
 let cells = document.getElementsByTagName("th");
 let updateButtons = document.getElementsByClassName("update");
 let updatePackageButtons = document.getElementsByClassName("updatePackage");
+let removePackageButtons = document.getElementsByClassName("removePackage");
 
 
 for (const button of updateButtons) {
@@ -15,6 +16,12 @@ for (const button of updateButtons) {
 for (const button of updatePackageButtons) {
     button.addEventListener("click", () => {
         updatePackage(button.getAttribute("id"))
+    })
+}
+
+for (const button of removePackageButtons) {
+    button.addEventListener("click", () => {
+        deletePackage(button.getAttribute("id"))
     })
 }
 
@@ -75,8 +82,8 @@ for (var i = 0; i < cells.length; i++) {
 
 const updateInfo = async (user_id) => {
     let data = []
-    const row = document.getElementById("table").rows[user_id].cells
-
+    const row = document.getElementById(`${user_id}/`).cells;
+    
     for (const c of row) {
         if (c.tagName === "TH")
             data.push(c.innerHTML.trim())
@@ -99,7 +106,7 @@ const showUpdates = async (customer_id) => {
 
     fetch(`/index/updates/${customer_id}`).then(res => res.json()).then(res => {
         const x = document.getElementsByClassName(customer_id);
-        console.log(res[0].email)
+        
 
         x[1].innerHTML = res[0].email;
         x[2].innerHTML = res[0].Fname;
@@ -114,13 +121,19 @@ const showUpdates = async (customer_id) => {
 
 // --------------------------------------------------------------------------------------------------------------
 const updatePackage = async (package_id) => {
+
     let data = []
-    const row = document.getElementById("packageTable").rows[package_id].cells
+
+    const row = document.getElementById(`${package_id}/`).cells;
+
 
     for (const c of row) {
         if (c.tagName === "TH")
             data.push(c.innerHTML.trim())
-    }
+    } 
+
+    console.log(data)
+
 
     const option = {
         method: 'POST',
@@ -130,14 +143,14 @@ const updatePackage = async (package_id) => {
         body: JSON.stringify(data)
     }
 
-    await fetch("/updates/package", option)
-    showPackageUpdates(package_id);
+    await fetch(`/index/updates/package/"${package_id}"`, option)
+    // showPackageUpdates(package_id);
 }
 
 const showPackageUpdates = async (package_id) => {
 
 
-    fetch(`/index/updates/${package_id}`).then(res => res.json()).then(res => {
+    fetch(`/index/updates/package/"${package_id}"`).then(res => res.json()).then(res => {
         const x = document.getElementsByClassName(package_id);
         // console.log(res[0].email)
 
@@ -150,5 +163,11 @@ const showPackageUpdates = async (package_id) => {
 
     })
 }
+
+
+const deletePackage = async (package_id) => {
+    
+}
+
 
 

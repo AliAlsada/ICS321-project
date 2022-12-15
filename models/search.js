@@ -31,7 +31,7 @@ const searchAll = async (customer_id) =>{
 const searchBarcode = async (searchedBarcode) =>{
     const db = await getDbConnection();
 
-    sql = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, p.distenation FROM PACKAGE p INNER JOIN CUSTOMER c ON p.sender_ID = c.customer_id WHERE p.barcode = ${searchedBarcode}`;
+    sql = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, p.distenation, p.sender_ID, p.weight, p.price FROM PACKAGE p INNER JOIN CUSTOMER c ON p.sender_ID = c.customer_id WHERE p.barcode = ${searchedBarcode}`;
     const result = await db.all(sql);
     await db.close();
     return result;
@@ -57,15 +57,18 @@ const searchCity = async (customer_id, searchedCity) =>{
 const searchCatagory = async (customer_id, searchedCatagory) =>{
     const db = await getDbConnection();
 
+
     const sendPackages = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, distenation, p.sender_ID FROM PACKAGE p 
     INNER JOIN 
     CUSTOMER c ON p.sender_ID = c.customer_id 
-    WHERE p.receiver_ID = ${customer_id} AND p.barcode = (SELECT barcode FROM "${searchedCatagory}")`
+    INNER JOIN
+    "${searchedCatagory}" s ON s.barcode = p.barcode WHERE p.receiver_ID = ${customer_id}`
 
     const receivedPackages = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, distenation, p.sender_ID FROM PACKAGE p 
     INNER JOIN 
-    CUSTOMER c ON p.sender_ID = c.customer_id 
-    WHERE p.sender_ID = ${customer_id} AND p.barcode = (SELECT barcode FROM "${searchedCatagory}")`
+    CUSTOMER c ON  p.receiver_ID = c.customer_id 
+    INNER JOIN
+    "${searchedCatagory}" s ON s.barcode = p.barcode WHERE p.sender_ID = ${customer_id}`
 
 
     const sql = `${sendPackages} UNION ${receivedPackages}`

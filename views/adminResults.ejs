@@ -28,13 +28,11 @@
                 <th>track</th>
                 
             </tr>
-
-
         </thead>
 
         <tbody>
             <% packages.forEach(package=> { %>
-                <tr>
+                <tr id="<%=package.barcode%>/">
                     <th class=<%=package.barcode%>>
                         <%=package.barcode%>
                     </th>
@@ -48,15 +46,19 @@
                     <th class=<%=package.barcode%>>
                         <%=package.sender_ID%>
                     </th>
+
                     <th class=<%=package.barcode%>>
                         <%=package.distenation%>
                     </th>
+
                     <th class=<%=package.barcode%>>
                         <%=package.catagory%>
                     </th>
+
                     <th class=<%=package.barcode%>>
                         <%=package.weight%>
                     </th>
+
                     <th class=<%=package.barcode%>>
                         <%=package.price%>
                     </th>
@@ -64,11 +66,12 @@
                     <th class=<%=package.barcode%>>
                         <%=package.delivery_date%>
                     </th>
+                    
                     <td>
                         <button class="button-17 updatePackage" id=<%=package.barcode%>>update</button>
                     </td>
                     <td>
-                        <button class="button-17">remove</button>
+                        <button class="button-17 removePackage" id="<%=package.barcode%>/remove">remove</button>
                     </td>
                     <td>
                         <button class="button-17">track</button>
