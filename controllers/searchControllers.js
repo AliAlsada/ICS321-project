@@ -53,8 +53,6 @@ const searchResults = async (req, res) => {
 
 
 
-
-
 module.exports = {
     searchResults,
 }

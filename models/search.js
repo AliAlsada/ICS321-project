@@ -14,10 +14,10 @@ const getDbConnection = async () => {
 const searchAll = async (customer_id) =>{
     const db = await getDbConnection();
 
-    const sendPackages = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, distenation, p.sender_ID 
+    const sendPackages = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, distenation, p.sender_ID, weight, price
     FROM PACKAGE p INNER JOIN CUSTOMER c ON p.sender_ID = c.customer_id WHERE p.receiver_ID = ${customer_id}`;
 
-    const receivedPackages = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, distenation, p.sender_ID 
+    const receivedPackages = `SELECT p.barcode, c.Fname, c.Lname, p.delivery_date, distenation, p.sender_ID, weight, price 
     FROM PACKAGE p INNER JOIN CUSTOMER c ON p.receiver_ID = c.customer_id WHERE p.sender_ID = ${customer_id}`;
 
     const sql = `${sendPackages} UNION ${receivedPackages}`
@@ -118,6 +118,17 @@ const searchedCondition = async (customer_id, searchedCondition) =>{
 }
 
 
+const getCatagory = async (barcode, catagory) =>{
+
+    const db = await getDbConnection();
+    const sql = `SELECT p.barcode FROM PACKAGE p INNER JOIN "${catagory}" c on p.barcode = c.barcode WHERE p.barcode = ${barcode}`;
+    const result = await db.get(sql);
+    await db.close();
+    return result;
+}   
+
+
+
 
 
 
@@ -128,4 +139,5 @@ module.exports = {
     searchCatagory,
     searchState,
     searchedCondition,
+    getCatagory
 }

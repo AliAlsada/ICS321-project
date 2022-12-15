@@ -12,4 +12,5 @@ router.get("/", (req, res) => {
 
 router.post("/results" , searchControllers.searchResults);
 
+
 module.exports = router;

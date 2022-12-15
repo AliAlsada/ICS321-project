@@ -5,22 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/style/admin.css">
     <title>admin</title>
 </head>
 
 <body>
 
-    <table>
+    <table class="editable " id="table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Email</th>
-                <th>name</th>
+                <th>Fname</th>
+                <th>Lname</th>
                 <th>phone</th>
                 <th>country</th>
                 <th>city</th>
-                <th>Packages</th>
+                <th>update</th>
+                <th>packages</th>
                 <th>remove</th>
             </tr>
 
@@ -30,35 +33,45 @@
         <tbody>
             <% customers.forEach(customer=> { %>
                 <tr>
-                    <th>
+                    <th class=<%=customer.customer_id%>>
                         <%=customer.customer_id%>
                     </th>
-                    <th>
+                    <th class=<%=customer.customer_id%>>
                         <%=customer.email%>
                     </th>
-                    <th>"<%=customer.Fname%>
-                            <%=customer.Lname%>"</th>
-                    <th>
+                    <th class=<%=customer.customer_id%>>
+                        <%=customer.Fname%>
+                    </th>
+
+                    <th class=<%=customer.customer_id%>>
+                        <%=customer.Lname%>
+                    </th>
+                    <th class=<%=customer.customer_id%>>
                         <%=customer.phone%>
                     </th>
-                    <th>
+                    <th class=<%=customer.customer_id%>>
                         <%=customer.country%>
                     </th>
-                    <th>
+                    <th class=<%=customer.customer_id%>>
                         <%=customer.city%>
                     </th>
-                    <th>
-                        <button>Packages</button>
-                    </th>
-                    <th>
-                        <button>remove</button>
-                    </th>
+                    <td>
+                        <button class="button-17 update" id=<%=customer.customer_id %> >update</button>
+                    </td>
+                    <td>
+                        <a href="/index/<%=customer.customer_id %>/packages"><button class="button-17">Packages</button></a>
+                    </td>
+                    <td>
+                        <button class="button-17">remove</button>
+                    </td>
                 </tr>
-    
+
                 <% }); %>
         </tbody>
 
     </table>
+
+    <script src="/js/admin.js"></script>
 
 </body>
 

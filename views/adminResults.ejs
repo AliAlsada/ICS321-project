@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style/admin.css">
+    <title>search results</title>
+</head>
+<body>
+
+
+    <table class="editable " id="packageTable">
+        <thead>
+            <tr>
+                <th>barcode</th>
+                <th>Fname</th>
+                <th>Lname</th>
+                <th>sender_ID</th>
+                <th>distenation</th>
+                <th>catagory</th>
+                <th>weight</th>
+                <th>price</th>
+                <th>delivery_date</th>
+                <th>update</th>
+                <th>remove</th>
+                <th>track</th>
+                
+            </tr>
+
+
+        </thead>
+
+        <tbody>
+            <% packages.forEach(package=> { %>
+                <tr>
+                    <th class=<%=package.barcode%>>
+                        <%=package.barcode%>
+                    </th>
+                    <th class=<%=package.barcode%>>
+                        <%=package.Fname%>
+                    </th>
+                    <th class=<%=package.barcode%>>
+                        <%=package.Lname%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.sender_ID%>
+                    </th>
+                    <th class=<%=package.barcode%>>
+                        <%=package.distenation%>
+                    </th>
+                    <th class=<%=package.barcode%>>
+                        <%=package.catagory%>
+                    </th>
+                    <th class=<%=package.barcode%>>
+                        <%=package.weight%>
+                    </th>
+                    <th class=<%=package.barcode%>>
+                        <%=package.price%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.delivery_date%>
+                    </th>
+                    <td>
+                        <button class="button-17 updatePackage" id=<%=package.barcode%>>update</button>
+                    </td>
+                    <td>
+                        <button class="button-17">remove</button>
+                    </td>
+                    <td>
+                        <button class="button-17">track</button>
+                    </td>
+                </tr>
+
+                <% }); %>
+        </tbody>
+
+    </table>
+
+    <script src="/js/admin.js"></script>
+
+</body>
+</html>
