@@ -38,10 +38,11 @@
         </a>
 
         <!-- List the total number of package types (Regular, Fragile, Liquid, Chemical ) that have been sent between two dates. -->
-        <a href="/reports/report/3">
-            <div class="card">
+        <a>
+            <div class="card report-3">
                 <p class="emojie">&#128197;</p>
                 <p class="reportP">number of package types that have been sent between two dates</p>
+  
             </div>
         </a>
 
@@ -55,6 +56,25 @@
         </a>
 
     </div>
+
+
+    <dialog class="modal" id="modal-two">
+
+        <button class="button close-button-two close-button">X</button>
+        
+        <form class="form" method="post" action="/reports/report/3">
+
+            <input type="date" name="deliveryDate" required>
+            <input type="date" name="deliveryDate" required>
+            <div>
+                <button class="button submit-button" type="submit">submit form</button>
+            </div>
+        </form>
+
+    </dialog>
+
+
+    <script src="/js/admin.js"></script>
 
 
 </body>

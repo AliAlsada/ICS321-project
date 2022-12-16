@@ -31,10 +31,12 @@ router.get("/report/2", async (req, res) => {
     res.render("reportTwo", {delayed: packages.delayed, delivered: packages.delivered, lost: packages.lost});
 })
 
-router.get("/report/3", async (req, res) => {
+router.post("/report/3", async (req, res) => {
+    const dates = req.body
+    console.log(dates)
 
-    const packages = await reportQueries.getReportThree('2022-12-29','2022-12-31');
-    console.log(packages)
+    // const packages = await reportQueries.getReportThree('2022-12-29','2022-12-31');
+    // console.log(packages)
     // res.render("reportTwo", {delayed: packages.delayed, delivered: packages.delivered, lost: packages.lost});
 })
 

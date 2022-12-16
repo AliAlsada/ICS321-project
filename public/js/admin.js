@@ -4,8 +4,11 @@ let updateButtons = document.getElementsByClassName("update");
 let updatePackageButtons = document.getElementsByClassName("updatePackage");
 let removePackageButtons = document.getElementsByClassName("removePackage");
 const modal = document.querySelector("#modal");
+const modalTwo = document.querySelector("#modal-two");
 const addRecord = document.querySelector("#add-record");
 const closeButton = document.querySelector(".close-button");
+const closeButtonTwo = document.querySelector(".close-button-two");
+const report3 = document.querySelector(".report-3");
 
 
 
@@ -38,6 +41,19 @@ if (addRecord) {
     });
 
 }
+
+if (report3) {
+    report3.addEventListener("click", () => {
+        modalTwo.showModal();
+    })
+
+    closeButtonTwo.addEventListener("click", () => {
+        modalTwo.close();
+    });
+
+}
+
+
 
 
 
