@@ -41,6 +41,9 @@ app.use("/send", sendRouter);
 const trackRouter = require("./routes/trackRoutes");
 app.use("/track", trackRouter);
 
+const reportRouter = require("./routes/reportRoutes");
+app.use("/reports", reportRouter);
+
 
 
 app.listen(3000);

@@ -1,6 +1,8 @@
 const express = require("express");
-const adminQueries = require("../models/admin")
-const searchQueries = require("../models/search")
+const { trackResults } = require("../controllers/trackControllers");
+const adminQueries = require("../models/admin");
+const searchQueries = require("../models/search");
+const historyQueries = require("../models/history");
 
 const router = express.Router();
 
@@ -104,6 +106,47 @@ router.get("/updates/package/:id/delete", async (req, res) => {
     console.log("sss")
     res.redirect(`/index/${req.params.id}/packages`);
 
+})
+
+//history
+router.get("/:barcode/track", async (req, res) => {
+    const barcode = req.params.barcode;
+
+    //get history
+    const history = await searchQueries.trackResults(req.params.barcode);
+    const locations = await searchQueries.getLocations();
+
+    const states = ["DELIVERED", "IN_TRANSIT", "AVAILABLE", "LOST"];
+    const package = await searchQueries.searchBarcode(barcode);
+
+    let state;
+    
+    for (let j = 0; j < states.length; j++) {
+        if (await searchQueries.getState(package[0].barcode, states[j])) {
+            state = states[j]
+        }
+    } 
+    console.log(history)
+    res.render("adminTrack", {history: history,  locations: locations, state: state, barcode: barcode});
+
+})
+
+//history
+router.post("/:barcode/track", async (req, res) => {
+    const record = req.body;
+
+    //add the record to the history
+    const meta = await historyQueries.addRecord(record, req.params.barcode);
+    const meta2 = await historyQueries.changeState(record, req.params.barcode);
+    //change the package state
+
+    console.log(meta);
+})
+
+//reports
+//history
+router.get("/reports", async (req, res) => {
+    res.render("adminReports");
 })
 
 

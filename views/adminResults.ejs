@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="/style/admin.css">
     <title>search results</title>
 </head>
+
 <body>
 
 
@@ -26,7 +28,8 @@
                 <th>update</th>
                 <th>remove</th>
                 <th>track</th>
-                
+                <th>Email</th>
+
             </tr>
         </thead>
 
@@ -66,7 +69,7 @@
                     <th class=<%=package.barcode%>>
                         <%=package.delivery_date%>
                     </th>
-                    
+
                     <td>
                         <button class="button-17 updatePackage" id=<%=package.barcode%>>update</button>
                     </td>
@@ -74,8 +77,15 @@
                         <button class="button-17 removePackage <%=package.barcode%>">remove</button>
                     </td>
                     <td>
-                        <button class="button-17">track</button>
+                        <a href="/index/<%=package.barcode%>/track">
+                            <button class="button-17 trackPackage <%=package.barcode%>">track</button>
+                        </a>
                     </td>
+
+                    <form action="mailto:s201960570@kfupm.edu.sa">
+                        <td> <button class="button-17 sendEmail <%=package.barcode%>">Email</button> </td>
+                    </form>
+
                 </tr>
 
                 <% }); %>
@@ -86,4 +96,5 @@
     <script src="/js/admin.js"></script>
 
 </body>
+
 </html>

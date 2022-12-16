@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style/admin.css">
+    <title>History</title>
+</head>
+
+<body>
+
+
+
+
+    <table class="editable " id="historyTable">
+        <thead>
+            <tr>
+                <th>location Number</th>
+                <th>location Name</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>state</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% if (typeof history !='undefined' && history.length> 0) { %>
+                <% history.forEach(record=> { %>
+                    <tr id="<%=record.barcode%>/">
+                        <th class=<%=record.barcode%>>
+                            <%=record.location_num%>
+                        </th>
+                        <th class=<%=record.barcode%>>
+                            <%=record.location_name.name%>
+                        </th>
+
+                        <th class=<%=record.barcode%>>
+                            <%=record.location_name.country%>
+                        </th>
+
+                        <th class=<%=record.barcode%>>
+                            <%=record.location_name.city%>
+                        </th>
+
+                        <th class=<%=record.barcode%>>
+                            <%=record.date%>
+                        </th>
+                        <th class=<%=record.barcode%>>
+                            <%=record.time%>
+                        </th>
+
+                        <th class=<%=record.barcode%>>
+                            <%=state%>
+                        </th>
+
+                        <td>
+                            <button class="button-17 updatePackage" id=<%=record.barcode%>>update</button>
+                        </td>
+                        <td>
+                            <button class="button-17 removePackage <%=record.barcode%>">remove</button>
+                        </td>
+
+                    </tr>
+
+                    <% })%>
+
+                        <% } %>
+        </tbody>
+
+    </table>
+
+    <div>
+        <button id="add-record">Add-Record</button>
+    </div>
+
+    <dialog class="modal" id="modal">
+
+        <button class="button close-button">X</button>
+        
+        <form class="form" action="/index/<%= barcode %>/track" method="post">
+
+            <!-- selector for location number -->
+            <!-- ---------------------- I should include the retail centes ------------------------>
+            <select id="locationNumber" name="locationNumber" required>
+                <option value="">Select location</option>
+                <% locations.forEach(location=> { %>
+                    <option value=<%=location.location_num%>><%=location.name%>
+                    </option>
+                    <% }) %>
+            </select>
+
+            <!-- date picker for delivery date -->
+            <label for="delivery-date">Delivery date</label>
+            <input type="date" name="deliveryDate" id="delivery-date" required>
+
+            <!-- date picker for Time-->
+            <label for="Time">Time</label>
+            <input type="time" name="Time" id="Time" required>
+
+            <!-- selector for states -->
+            <select id="state" name="state" required>
+                <option value="">Select State</option>
+                <option value="AVAILABLE">AVAILABLE</option>
+                <option value="IN_TRANSIT">IN_TRANSIT</option>
+                <option value="LOST">LOST</option>
+                <option value="DELIVERED">DELIVERED</option>
+                
+            </select>
+            <div>
+                <button class="button submit-button" type="submit">submit form</button>
+            </div>
+        </form>
+
+    </dialog>
+
+    <script src="/js/admin.js"></script>
+
+</body>
+
+</html>

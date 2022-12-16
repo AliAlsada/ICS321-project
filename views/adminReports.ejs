@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style/admin.css">
+    <title>Reports</title>
+</head>
+
+<body id="reportsBody">
+
+    <header>
+        <%- include("./partials/adminHeader.ejs") %>
+    </header>
+
+
+    <h1 class="reports">Reports</h1>
+
+    <div class="cards">
+
+        <!-- Payments that have been confirmed and completed -->
+        <a href="/reports/report/1">
+            <div class="card">
+                <p class="emojie">&#128179;</p>
+                <p class="reportP">Payments that have been confirmed and completed</p>
+            </div>
+        </a>
+
+        <!-- List all lost/delayed/delivered packages between two dates -->
+        <a href="/reports/report/2">
+            <div class="card">
+                <p class="emojie">&#128197;</p>
+                <p class="reportP">all lost/delayed/delivered packages between two dates</p>
+            </div>
+        </a>
+
+        <!-- List the total number of package types (Regular, Fragile, Liquid, Chemical ) that have been sent between two dates. -->
+        <a href="/reports/report/3">
+            <div class="card">
+                <p class="emojie">&#128197;</p>
+                <p class="reportP">number of package types that have been sent between two dates</p>
+            </div>
+        </a>
+
+        <!-- Package Delivery Tracking based on categories, locations and status. For example, list 
+        all fragile packages currently in transit at Riyadh. -->
+        <a href="/reports/report/4">
+            <div class="card">
+                <p class="emojie">&#128230;</p>
+                <p class="reportP">Package Delivery Tracking based on categories, locations and status</p>
+            </div>
+        </a>
+
+    </div>
+
+
+</body>
+
+</html>

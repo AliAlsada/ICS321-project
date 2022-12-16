@@ -1,10 +1,11 @@
-
-
 let table = document.getElementById("usersTable");
 let cells = document.getElementsByTagName("th");
 let updateButtons = document.getElementsByClassName("update");
 let updatePackageButtons = document.getElementsByClassName("updatePackage");
 let removePackageButtons = document.getElementsByClassName("removePackage");
+const modal = document.querySelector("#modal");
+const addRecord = document.querySelector("#add-record");
+const closeButton = document.querySelector(".close-button");
 
 
 
@@ -26,6 +27,17 @@ for (const button of removePackageButtons) {
     })
 }
 
+
+if (addRecord) {
+    addRecord.addEventListener("click", () => {
+        modal.showModal();
+    })
+
+    closeButton.addEventListener("click", () => {
+        modal.close();
+    });
+
+}
 
 
 
@@ -84,7 +96,7 @@ for (var i = 0; i < cells.length; i++) {
 const updateInfo = async (user_id) => {
     let data = []
     const row = document.getElementById(`${user_id}/`).cells;
-    
+
     for (const c of row) {
         if (c.tagName === "TH")
             data.push(c.innerHTML.trim())
@@ -107,7 +119,7 @@ const showUpdates = async (customer_id) => {
 
     fetch(`/index/updates/${customer_id}`).then(res => res.json()).then(res => {
         const x = document.getElementsByClassName(customer_id);
-        
+
 
         x[1].innerHTML = res[0].email;
         x[2].innerHTML = res[0].Fname;
@@ -131,7 +143,7 @@ const updatePackage = async (package_id) => {
     for (const c of row) {
         if (c.tagName === "TH")
             data.push(c.innerHTML.trim())
-    } 
+    }
 
     console.log(data)
 
@@ -175,7 +187,7 @@ const deletePackage = async (package_id) => {
     for (const c of row) {
         if (c.tagName === "TH")
             data.push(c.innerHTML.trim())
-    } 
+    }
 
     console.log(data)
 
@@ -192,9 +204,9 @@ const deletePackage = async (package_id) => {
     // showPackageUpdates(package_id);
 }
 
-const showDeleteUpdates = async (package_id) => {
-    await fetch(`/index/updates/package/"${package_id}"/delete`)
-}
+
+
+
 
 
 

@@ -3,8 +3,16 @@ const nextBtns = document.querySelectorAll(".btn-next");
 const progress = document.getElementById("progress");
 const formSteps = document.querySelectorAll(".form-step");
 const progressSteps = document.querySelectorAll(".progress-step");
+const valueBtn = document.querySelector(".value-btn");
+const shippingPrice = document.querySelector(".shipping-price");
+const weight = document.querySelector("#weight");
+
 
 let formStepsNum = 0;
+
+valueBtn.addEventListener("click", () => {
+  shippingPrice.innerHTML = parseInt(weight.value) * 3; 
+})
 
 nextBtns.forEach((btn) => {
   btn.addEventListener("click", () => {

@@ -409,8 +409,15 @@ db.all(sql, [], (err, rows) => {
 
 
 
-// let row1 = ['outlet', 'Dhahran'];
-// let retail_centers = [row1]
+// let row1 = ['center', 'Dhahran'];
+// let row2 = ['center', 'Safwa'];
+// let row3 = ['center', 'Dammam'];
+// let row4 = ['center', 'Abha'];
+// let row5 = ['center', 'Jeddah'];
+// let row6 = ['center', 'Qatif'];
+// let row7 = ['center', 'Riyadh'];
+// let row8 = ['center', 'Mecca'];
+// let retail_centers = [row1, row2, row3, row4, row5, row6, row7,row8]
 
 // let placeholders = retail_centers.map((retail_centers) => '(?,?)').join(',');
 // console.log(placeholders)
@@ -440,46 +447,46 @@ sql = `INSERT INTO TRUCK(location_num, type)  VALUES (?,?)`;
 sql = `INSERT INTO WAREHOUSE(location_num, street)  VALUES (?,?)`;
 
 
-// let airport1 = ['King Fahd International Airport', 'SA', "Dammam"];
-// let airport2 = ['King Khalid International Airport', 'SA', "Riyadh"];
-// let airport3 = ['King Abdulaziz International Airport', 'SA', "Jeddah"];
+let airport1 = ['King Fahd International Airport', 'SA', "Dammam"];
+let airport2 = ['King Khalid International Airport', 'SA', "Riyadh"];
+let airport3 = ['King Abdulaziz International Airport', 'SA', "Jeddah"];
 
-// let plane1 = ['F-16', 'SA', "Dammam"];
-// let plane2 = ['F-17', 'SA', "Riyadh"];
-// let plane3 = ['F-18', 'SA', "Jeddah"];
+let plane1 = ['F-16', 'SA', "Dammam"];
+let plane2 = ['F-17', 'SA', "Riyadh"];
+let plane3 = ['F-18', 'SA', "Jeddah"];
 
-// let TRUCK1 = ['T1', 'SA', "Dammam"];
-// let TRUCK2 = ['T2', 'SA', "Riyadh"];
-// let TRUCK3 = ['T3', 'SA', "Jeddah"];
+let TRUCK1 = ['T1', 'SA', "Dammam"];
+let TRUCK2 = ['T2', 'SA', "Riyadh"];
+let TRUCK3 = ['T3', 'SA', "Jeddah"];
 
-// let WAREHOUSE1 = ['W1', 'SA', "Dammam"];
-// let WAREHOUSE2 = ['W2', 'SA', "Riyadh"];
-// let WAREHOUSE3 = ['W3', 'SA', "Jeddah"];
+let WAREHOUSE1 = ['W1', 'SA', "Dammam"];
+let WAREHOUSE2 = ['W2', 'SA', "Riyadh"];
+let WAREHOUSE3 = ['W3', 'SA', "Jeddah"];
 
-// let locations = [airport1, airport2, airport3, plane1, plane2, plane3, TRUCK1, TRUCK2, TRUCK3, WAREHOUSE1, WAREHOUSE2, WAREHOUSE3]
-// let placeholders = locations.map((locations) => '(?,?,?)').join(',');
-
-
-// // insert values into location
-// sql = `INSERT INTO LOCATION(name, country, city) VALUES ` + placeholders;
-// db.run(sql, locations.flat(), function(err) {
-//         if (err) {
-//           return console.error(err.message);
-//         }
-//         console.log(`Rows inserted ${this.changes}`);
-//       });
-
-// sql = `SELECT * FROM LOCATION`
-// db.all(sql, [], (err, rows) => {
-//         if (err) return console.log(err.message);
-//         rows.forEach((row) => { console.log(row) });
-// });
+let locations = [airport1, airport2, airport3, plane1, plane2, plane3, TRUCK1, TRUCK2, TRUCK3, WAREHOUSE1, WAREHOUSE2, WAREHOUSE3]
+let placeholders = locations.map((locations) => '(?,?,?)').join(',');
 
 
-// let TRUCK1 = [10, '2929, Bilal bn rbah'];
-// let TRUCK2 = [11, '2900, jaber ibn hayan'];
-// let TRUCK3 = [12, '2719, Park Avenue'];
-// let trucks = [TRUCK1, TRUCK2, TRUCK3]
+// insert values into location
+sql = `INSERT INTO LOCATION(name, country, city) VALUES ` + placeholders;
+db.run(sql, locations.flat(), function(err) {
+        if (err) {
+          return console.error(err.message);
+        }
+        console.log(`Rows inserted ${this.changes}`);
+      });
+
+sql = `SELECT * FROM LOCATION`
+db.all(sql, [], (err, rows) => {
+        if (err) return console.log(err.message);
+        rows.forEach((row) => { console.log(row) });
+});
+
+
+// let WAREHOUSE1 = [10, '2929, Bilal bn rbah'];
+// let WAREHOUSE2 = [11, '2900, jaber ibn hayan'];
+// let WAREHOUSE3 = [12, '2719, Park Avenue'];
+// let WAREHOUSE4 = [TRUCK1, TRUCK2, TRUCK3]
 
 // sql = `INSERT INTO WAREHOUSE(location_num, street)  VALUES (?,?),(?,?),(?,?)`;
 // db.run(sql, trucks.flat(), function(err) {
@@ -489,11 +496,7 @@ sql = `INSERT INTO WAREHOUSE(location_num, street)  VALUES (?,?)`;
 //         console.log(`Rows inserted ${this.changes}`);
 //       });
 
-// sql = `SELECT * FROM FRAGILE`
-// db.all(sql, (err, rows) => {
-//         if (err) return console.log(err.message);
-//         rows.forEach((row) => { console.log(row) });
-// });
+
 
 
 // //insert values into package

@@ -30,7 +30,7 @@ sql = `CREATE TABLE IF NOT EXISTS CUSTOMER(
 
 db.run(sql);
 
-    // EMPLOYEE
+// EMPLOYEE
 sql = `CREATE TABLE IF NOT EXISTS EMPLOYEE (
     employee_ID CHAR(10),
     account_id INTEGER,
@@ -49,29 +49,29 @@ sql = `CREATE TABLE IF NOT EXISTS ACCOUNT (
     password TEXT NOT NULL,
     rule TEXT,
     UNIQUE (email)
-    )`; 
-    db.run(sql); 
+    )`;
+db.run(sql);
 
 
-        // RETAIL_CENTER        
+// RETAIL_CENTER        
 sql = `CREATE TABLE IF NOT EXISTS RETAIL_CENTER ( 
         retail_id  INTEGER PRIMARY KEY AUTOINCREMENT,
         type    TEXT,
         street  TEXT,
         city    TEXT NOT NULL
         )`;
-        db.run(sql);
+db.run(sql);
 
-        // LOCATION
+// LOCATION
 sql = `CREATE TABLE IF NOT EXISTS LOCATION( 
         location_num INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
         country TEXT,
         city TEXT
         )`;
-        db.run(sql);
+db.run(sql);
 
-        // PACKAGE
+// PACKAGE
 sql = `CREATE TABLE IF NOT EXISTS PACKAGE (
         barcode INTEGER PRIMARY KEY AUTOINCREMENT,
         delivery_date  TEXT,
@@ -89,10 +89,10 @@ sql = `CREATE TABLE IF NOT EXISTS PACKAGE (
         FOREIGN KEY (receiver_ID) REFERENCES CUSTOMER(customer_id),
         FOREIGN KEY (locationNum) REFERENCES LOCATION(location_num),
         FOREIGN KEY (retail_ID) REFERENCES RETAIL_CENTER(retail_ID)
-        )`; 
-        db.run(sql);
+        )`;
+db.run(sql);
 
-        // HISTORY
+// HISTORY
 sql = `CREATE TABLE IF NOT EXISTS HISTORY( 
         barcode INTEGER NOT NULL,
         location_num INTEGER NOT NULL,
@@ -101,15 +101,15 @@ sql = `CREATE TABLE IF NOT EXISTS HISTORY(
         PRIMARY KEY   (barcode,location_num),
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode),
         FOREIGN KEY (location_num) REFERENCES LOCATION(location_num)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS TRANSPORTATION_EVENT( 
         schedule_num INTEGER PRIMARY KEY AUTOINCREMENT,
         type TEXT,
         delivery_route TEXT
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 
 sql = `CREATE TABLE IF NOT EXISTS SHIPPED_VIA( 
@@ -118,8 +118,8 @@ sql = `CREATE TABLE IF NOT EXISTS SHIPPED_VIA(
         PRIMARY KEY   (barcode,schedule_num),
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode),
         FOREIGN KEY (schedule_num) REFERENCES TRANSPORTATION_EVENT(schedule_num)
-        )`; 
-        db.run(sql);
+        )`;
+db.run(sql);
 
 
 
@@ -129,8 +129,8 @@ sql = `CREATE TABLE IF NOT EXISTS REMOVED_PACKAGES (
         PRIMARY KEY (barcode,employee_id),
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode),
         FOREIGN KEY (employee_ID) REFERENCES EMPLOYEE(employee_ID)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 
 sql = `CREATE TABLE IF NOT EXISTS UPDATED_ADD_PACKAGES (
@@ -139,97 +139,97 @@ sql = `CREATE TABLE IF NOT EXISTS UPDATED_ADD_PACKAGES (
         PRIMARY KEY (barcode,employee_id),
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode),
         FOREIGN KEY (employee_ID) REFERENCES EMPLOYEE(employee_ID)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS REGULAR (
         barcode INTEGER NOT NULL,
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS CHEMICAL (
         barcode INTEGER NOT NULL,
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS FRAGILE (
         barcode INTEGER NOT NULL,
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS LIQUID (
         barcode INTEGER NOT NULL,
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS DELIVERED  (
         barcode INTEGER NOT NULL,
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS IN_TRANSIT  (
         barcode INTEGER NOT NULL,
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS AVAILABLE  (
         barcode INTEGER NOT NULL,
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS LOST   (
         barcode INTEGER NOT NULL,
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS DELAYED  (
         barcode INTEGER NOT NULL,
         fines INTEGER,
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS DAMAGED   (
         barcode INTEGER NOT NULL,
         FOREIGN KEY (barcode) REFERENCES PACKAGE(barcode)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS AIRPORT( 
         location_num INTEGER NOT NULL,
         FOREIGN KEY (location_num) REFERENCES LOCATION(location_num)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS PLANE( 
         location_num INTEGER NOT NULL,
         FOREIGN KEY (location_num) REFERENCES LOCATION(location_num)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS WAREHOUSE( 
         location_num INTEGER NOT NULL,
         street TEXT,
         FOREIGN KEY (location_num) REFERENCES LOCATION(location_num)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
 sql = `CREATE TABLE IF NOT EXISTS TRUCK( 
         location_num INTEGER NOT NULL,
         type TEXT,
         FOREIGN KEY (location_num) REFERENCES LOCATION(location_num)
-        )`; 
-        db.run(sql); 
+        )`;
+db.run(sql);
 
-// db.run("DROP TABLE IF EXISTS PACKAGE");
+db.run("DROP TABLE IF EXISTS PACKAGE");
 // db.run("DROP TABLE IF EXISTS CUSTOMER");
 // db.run("DROP TABLE IF EXISTS RETAIL_CENTER");
 // db.run("DROP TABLE IF EXISTS LOCATION");
@@ -271,7 +271,7 @@ sql = `CREATE TABLE IF NOT EXISTS TRUCK(
 
 
 
-        
+
 // sql = `INSERT INTO EMPLOYEE(employee_ID, email, Fname, Lname, salary)  VALUES (?,?,?,?,?)`;
 // db.run( sql, ["e201960570", "admin@gmail.com", "Ali", "Alsada", 20000], (err) => {
 //         if (err) return console.log(err.message);
@@ -290,3 +290,5 @@ sql = `CREATE TABLE IF NOT EXISTS TRUCK(
 
 // sql = `UPDATE EMPLOYEE SET account_id = 3 WHERE employee_ID = "e201960570"`;
 // db.run(sql)
+
+
