@@ -25,5 +25,12 @@ const getAdminAccountInfo = async (adminEmail) =>{
     return accountInfo;
 }
 
+const getCustomerInfo = async (customerEmail) =>{
+    const db = await getDbConnection();
+    const accountInfo  = await db.get(`SELECT customer_id, email FROM CUSTOMER WHERE email = '${customerEmail}'`);
+    await db.close();
+    return accountInfo;
+}
 
-module.exports = {getCustomerAccountInfo, getAdminAccountInfo};
+
+module.exports = {getCustomerAccountInfo, getAdminAccountInfo, getCustomerInfo};

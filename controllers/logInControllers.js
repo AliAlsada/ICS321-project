@@ -12,12 +12,14 @@ const logInAuth = async (req, res) => {
     const userInfo = await logInQueries.getCustomerAccountInfo(email);
     const adminInfo = await logInQueries.getAdminAccountInfo(email);
 
+    const customerInfo = await logInQueries.getCustomerInfo(email);
+
     if (userInfo) {
 
         //unhash password
         bcrypt.compare(logedPassword, userInfo.password, (err, result) => {
             if (result) {
-                id = userInfo.account_id
+                id = customerInfo.customer_id;
 
                 req.session.authenticated = true;
                 req.session.user = { id, email };
