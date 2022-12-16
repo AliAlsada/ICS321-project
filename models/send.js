@@ -32,17 +32,18 @@ const saveCustomer = async (req, res) =>{
 const savePackage = async (req, res, senderID) =>{
     const {country, city, fname, lname, 
         phone, email, weight, value, catagory, deliveryDate} = req.body;
-    
+
+    const payment = weight * 3;
     const receiverID = await getReceiverID(email);
 
     const db = await getDbConnection();
-    sql= `INSERT INTO PACKAGE(delivery_date, weight, distenation, receiver_ID, sender_ID, price) VALUES ("${deliveryDate}",${weight},"${city}",${receiverID},${senderID},${value})`;
+    sql= `INSERT INTO PACKAGE(delivery_date, weight, distenation, receiver_ID, sender_ID, price, payment) VALUES ("${deliveryDate}",${weight},"${city}",${receiverID}, ${senderID}, ${value}, ${payment})`;
     const meta = await db.run(sql);
     
     sql= `INSERT INTO IN_TRANSIT(barcode) VALUES (${meta.lastID})`;
     await db.run(sql);
-
-    sql= `INSERT INTO ${catagory}(barcode) VALUES (${meta.lastID})`;
+    
+    sql= `INSERT INTO "${catagory}"(barcode) VALUES (${meta.lastID})`;
     await db.run(sql);
 
     await db.close()

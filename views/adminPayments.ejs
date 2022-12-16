@@ -16,7 +16,70 @@
         <%- include("./partials/adminHeader.ejs") %>
     </header>
 
-    
+    <table class="editable " id="packageTable">
+        <thead>
+            <tr>
+                <th>barcode</th>
+                <th>sender_ID</th>
+                <th>reciver_ID</th>
+                <th>distenation</th>
+                <th>catagory</th>
+                <th>weight</th>
+                <th>price</th>
+                <th>delivery_date</th>
+                <th>payment</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <% packages.forEach(package=> { %>
+                <tr id="<%=package.barcode%>/">
+                    <th class=<%=package.barcode%>>
+                        <%=package.barcode%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.sender_ID%>
+                    </th>
+                    <th class=<%=package.barcode%>>
+                        <%=package.receiver_ID%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.distenation%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.catagory%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.weight%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.price%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.delivery_date%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.weight * 3%>
+                    </th>
+
+                    
+
+                </tr>
+
+                <% }); %>
+        </tbody>
+
+    </table>
+
+    <script src="/js/admin.js"></script>
 
 
 </body>

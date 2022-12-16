@@ -123,7 +123,12 @@ const updatePackageInfo = async (packageArray, previousCatagory) => {
 const deletePackage = async (package, catagory) => {
 
     const db = await getDbConnection();
+
+    await db.run(`DELETE FROM "${catagory}" WHERE barcode = ${package.barcode}`);
     await db.run(`DELETE FROM PACKAGE WHERE barcode = ${package.barcode}`);
+
+    await db.close();
+
 }
 
 

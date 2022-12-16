@@ -25,6 +25,7 @@
                 <th>weight</th>
                 <th>price</th>
                 <th>delivery_date</th>
+                <th>payment</th>
                 <th>update</th>
                 <th>remove</th>
                 <th>track</th>
@@ -68,6 +69,10 @@
 
                     <th class=<%=package.barcode%>>
                         <%=package.delivery_date%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.weight * 3%>
                     </th>
 
                     <td>

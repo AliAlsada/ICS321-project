@@ -41,7 +41,7 @@ router.get("/:id/packages", async (req, res) => {
             }
         }
     }
-
+    
     res.render("adminResults", { packages: packages });
 })
 
@@ -126,7 +126,7 @@ router.get("/:barcode/track", async (req, res) => {
             state = states[j]
         }
     } 
-    console.log(history)
+
     res.render("adminTrack", {history: history,  locations: locations, state: state, barcode: barcode});
 
 })

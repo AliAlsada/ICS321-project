@@ -209,6 +209,7 @@ label {
 
 #reportsBody {
     display: block;
+
 }
 
 .reports {
@@ -253,4 +254,20 @@ label {
 
 .cards a{
     color: black;
+}
+
+table{
+    margin: auto;
+    margin-top: 5rem;
+}
+
+.reportTwoH1{
+    text-align: center;
+    color: #cdcdcd;
+    margin-top: 5em;
+}
+
+.report-2{
+    margin-top: 1em;
+    margin-bottom: 4em;
 }
