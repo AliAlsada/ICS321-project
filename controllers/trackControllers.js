@@ -1,5 +1,6 @@
 const sqlite3 = require('sqlite3')
 const sqlite = require('sqlite')
+const searchQueries = require("../models/search");
 
 
 const getDbConnection = async () => {
@@ -12,30 +13,23 @@ const getDbConnection = async () => {
 const trackResults = async (req, res) => {
     const barcode = req.params.barcode;
 
-    //connect to the database
-    const db = await getDbConnection();
 
-    //get history of the package from the database
-    const row = await db.all(`SELECT * FROM HISTORY WHERE barcode = ${barcode} ORDER BY DATE`);
+        //get history
+        const history = await searchQueries.trackResults(req.params.barcode);
+        const locations = await searchQueries.getLocations();
     
-    //retreive the location name from location table by using the location num that is given in history table
-    if (row.length > 0){
-        row.forEach( async record => {
-            const location =  await db.get(`SELECT country, city, name FROM LOCATION WHERE location_num = ${record.location_num}`);
-            record["location_name"] = location; //add country and city name and name to the row that is taken from the history table
-        })
-    }
-
-
-    //retreive the state of the package
-
-
-    await db.close()
-
-    console.log(row) 
-
-    //send the data to the ejs
-    return res.render(`track`, {user: req.session.user, history: row});
+        const states = ["DELIVERED", "IN_TRANSIT", "AVAILABLE", "LOST"];
+        const package = await searchQueries.searchBarcode(barcode);
+    
+        let state;
+        
+        for (let j = 0; j < states.length; j++) {
+            if (await searchQueries.getState(package[0].barcode, states[j])) {
+                state = states[j]
+            }
+        } 
+    
+        res.render("track", {history: history,  locations: locations, state: state, barcode: barcode})
 
 }
 

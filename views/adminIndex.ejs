@@ -28,7 +28,7 @@
                 <th>city</th>
                 <th>update</th>
                 <th>packages</th>
-                <th>remove</th>
+
             </tr>
 
 
@@ -65,15 +65,74 @@
                     <td>
                         <a href="/index/<%=customer.customer_id %>/packages"><button class="button-17">Packages</button></a>
                     </td>
-                    <td>
-                        <button class="button-17">remove</button>
-                    </td>
                 </tr>
 
                 <% }); %>
         </tbody>
 
     </table>
+
+    <div class="recordBtnDiv">
+        <button id="add-user">add-user</button>
+    </div>
+
+    <dialog class="modal" id="modal-user">
+
+        <button class="button close-button-two close-button">X</button>
+        
+        <form class="form" method="post" action="/index/addUser">
+
+            <div>
+                <label class="email-text input-label" for="email">Email <br></label>
+                <input type="email" name="email" id="signUp-email" class="email-input user-input" required>
+            </div>
+
+            <div>
+                <label class="first-name-text" for="first-name-text">First Name <br></label>
+                <input type="text" name="firstName" id="firstName" class="name-input user-input" required>
+            </div>
+
+            <div>
+                <label class="last-name-text" for="last-name-text">Last Name <br></label>
+                <input type="text" name="lastName" id="lastName" class="name-input user-input" required>
+            </div>
+
+            <div>
+                <label class="phone" for="phone">Phone<br></label>
+                <input type="tel" name="phone" id="phone" class="user-input" pattern=^((?:[+?0?0?966]+)(?:\s?\d{2})(?:\s?\d{7}))$ required>
+            </div>
+
+            <div>
+                <label class="password-text input-label" for="password">Password <br></label>
+                <input type="password" name="password" id="signUp-password" class="password-input user-input" required>
+            </div>
+
+            <select id="country" name="country" class="user-input">
+                <option>Select Country</option>
+                <option value="SA">Saudi Arabia</option>
+            </select>
+
+            <select id="city" name="city" class="user-input">
+                <option>Select City</option>
+                <option value="RY">Riyadh</option>
+                <option value="JE">Jeddah</option>
+                <option value="ME">Mecca</option>
+                <option value="DM">Dammam</option>
+                <option value="DH">Dahran</option>
+                <option value="SF">Safwa</option>
+                <option value="QF">Qatif</option>
+                <option value="AB">Abha</option>
+            </select>
+
+
+            <div>
+                <button class="button submit-button" type="submit">submit form</button>
+            </div>
+        </form>
+
+    </dialog>
+
+
 
     <script src="/js/admin.js"></script>
 

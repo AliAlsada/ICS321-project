@@ -33,11 +33,37 @@ router.get("/report/2", async (req, res) => {
 
 router.post("/report/3", async (req, res) => {
     const dates = req.body
-    console.log(dates)
+ 
 
-    // const packages = await reportQueries.getReportThree('2022-12-29','2022-12-31');
+    const packages = await reportQueries.getReportThree(dates.deliveryDate[0], dates.deliveryDate[1]);
+    console.log(packages.chemical)
     // console.log(packages)
-    // res.render("reportTwo", {delayed: packages.delayed, delivered: packages.delivered, lost: packages.lost});
+    res.render("reportThree", {packages: packages});
+})
+
+
+router.get("/report/4", async (req, res) => {
+  
+    res.render("adminSearch");
+})
+
+router.post("/report/4", async (req, res) => {
+
+    const searchInfo = req.body;
+
+    const catagories = ["CHEMICAL", "REGULAR", "FRAGILE", "LIQUID"];
+    const packages = await reportQueries.getReportFour(searchInfo);
+    console.log(packages)
+
+    for (let i = 0; i < packages.length; i++) {
+        for (let j = 0; j < catagories.length; j++) {
+            if (await searchQueries.getCatagory(packages[i].barcode, catagories[j])) {
+                packages[i]["catagory"] = catagories[j]
+            }
+        }
+    }
+
+    res.render("adminResults", {packages: packages});
 })
 
 module.exports = router;

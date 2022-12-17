@@ -1,165 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/send.css">
-    <script src="../js/send.js" defer></script>
-    <title>send</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style/send.css">
+  <script src="../js/send.js" defer></script>
+  <title>send</title>
 </head>
+
 <body>
-    <form action="/send/save" class="form" method="post">
-        <h1 class="text-center">Shipment Form</h1>
-        <!-- Progress bar -->
-        <div class="progressbar">
-          <div class="progress" id="progress"></div>
-          
-          <div
-            class="progress-step progress-step-active"
-            data-title="Address"
-          ></div>
-          <div class="progress-step" data-title="Shipment details"></div>
-          <div class="progress-step" data-title="Payment"></div>
-        </div>
-  
-        <!-- Steps -->
-        <div class="form-step form-step-active">
-          <div class="input-group">
-      
-            <label for="country">Country/Region</label>
-            <select id="country" name="country" class="country" required>
-              <option value="">Select Country</option>
-              <option value="SA">Saudi Arabia</option>
-            </select>
-            
-            <br>
+  <form action="/send/save" class="form" method="post">
+    <h1 class="text-center">Shipment Form</h1>
+    <!-- Progress bar -->
+    <div class="progressbar">
+      <div class="progress" id="progress"></div>
 
-            <label for="city">City</label>
-            <select id="city" name="city" class="city" required>
-              <option value="">Select City</option>
-              <option value="Riyadh">Riyadh</option>
-              <option value="Jeddah">Jeddah</option>
-              <option value="Mecca">Mecca</option>
-              <option value="Dammam">Dammam</option>
-              <option value="Dharan">Dahran</option>
-              <option value="safwa">Safwa</option>
-              <option value="Qatif">Qatif</option>
-              <option value="Abha">Abha</option>
-            </select>
+      <div class="progress-step progress-step-active" data-title="Address"></div>
+      <div class="progress-step" data-title="Shipment details"></div>
+      <div class="progress-step" data-title="Payment"></div>
+    </div>
 
-            <br>
+    <!-- Steps -->
+    <div class="form-step form-step-active">
+      <div class="input-group">
 
-            <label for="first-name">Recipient Name</label>
-            <div class="recipient-name">
-                <input type="text" name="fname" id="fname" class="first-name" placeholder="First Name" required>
-                <input type="text" name="lname" id="lname" class="last-name" placeholder="Last Name" required>
-            </div>
+        <label for="country">Country/Region</label>
+        <select id="country" name="country" class="country" required>
+          <option value="">Select Country</option>
+          <option value="SA">Saudi Arabia</option>
+        </select>
 
-            <br>
+        <br>
 
-            <label for="phone">Phone</label>
-            <input type="tel" name="phone" id="phone" class="phone" placeholder="Write Recipient Phone starting with 05" required>
+        <label for="city">City</label>
+        <select id="city" name="city" class="city" required>
+          <option value="">Select City</option>
+          <option value="Riyadh">Riyadh</option>
+          <option value="Jeddah">Jeddah</option>
+          <option value="Mecca">Mecca</option>
+          <option value="Dammam">Dammam</option>
+          <option value="Dharan">Dahran</option>
+          <option value="safwa">Safwa</option>
+          <option value="Qatif">Qatif</option>
+          <option value="Abha">Abha</option>
+        </select>
 
-            <br>
+        <br>
 
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="email" placeholder="Write Recipient Email" required>
-            
-          </div>
-          
-
-          <div class="">
-            <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
-          </div>
-        </div>
-        
-        <div class="form-step">
-          <div>
-            <!-- this needs to be updated to better selector -->
-            <label for="weight">Estimated weight (Kg)</label>
-            <input type="number" name="weight" id="weight" required>
+        <label for="first-name">Recipient Name</label>
+        <div class="recipient-name">
+          <input type="text" name="fname" id="fname" class="first-name" placeholder="First Name" required>
+          <input type="text" name="lname" id="lname" class="last-name" placeholder="Last Name" required>
         </div>
 
         <br>
 
+        <label for="phone">Phone</label>
+        <input type="tel" name="phone" id="phone" class="phone" placeholder="Write Recipient Phone starting with 05"
+          required>
+
+        <br>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="email" placeholder="Write Recipient Email" required>
+
+      </div>
+
+
+      <div class="">
+        <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+      </div>
+    </div>
+
+    <div class="form-step">
+      <div>
+        <!-- this needs to be updated to better selector -->
+        <label for="weight">Estimated weight (Kg)</label>
+        <input type="number" name="weight" id="weight" required>
+      </div>
+
+      <br>
+
+
+      <div>
+        <label for="value">Value (SAR)</label>
+        <input type="number" name="value" id="value" required>
+      </div>
+
+      <br>
+
+      <div>
+        <label for="catagory">Catagory</label>
+        <select id="catagory" name="catagory" class="catagory" required>
+          <option value="">Select catagory</option>
+          <option value="CHEMICAL">Chemical</option>
+          <option value="LIQUID">Liquid</option>
+          <option value="FRAGILE">Fragile</option>
+          <option value="REGULAR">Regular</option>
+        </select>
+      </div>
+
+      <br>
+
+      <div>
+        <label for="delivery-date">Delivery date</label>
+        <input type="date" name="deliveryDate" id="delivery-date" required>
+      </div>
+
+      <br>
+
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a href="#" class="btn btn-next value-btn">Next</a>
+      </div>
+    </div>
+
+
+
+    <div class="form-step">
+
+
+      <!-- bring the price from the backend to ejs -->
+      <div class="price-container">
+        <h2 class="shipping-price"></h2>
+      </div>
+
+      <!-- payment here -->
+      <div>
+        <label for="Card-Number">Card Number</label>
+        <input type="text" name="Card-Number" id="Card-Number" required>
+      </div>
+
+      <br>
+
+      <div class="data-cvv">
+        <div>
+          <label for="Expiry-Date">Expiry Date</label>
+          <input type="date" name="Expiry-Date" id="Expiry-Date" required>
+        </div>
 
         <div>
-            <label for="value">Value (SAR)</label>
-            <input type="number" name="value" id="value" required>
+          <label for="cvv">CVV</label>
+          <input type="number" name="cvv" id="cvv" required>
         </div>
+      </div>
 
-        <br>
+      <br>
 
-        <div>
-            <label for="catagory">Catagory</label>
-            <select id="catagory" name="catagory" class="catagory" required>
-              <option value="">Select catagory</option>
-              <option value="CHEMICAL">Chemical</option>
-              <option value="LIQUID">Liquid</option>
-              <option value="FRAGILE">Fragile</option>
-              <option value="REGULAR">Regular</option>
-            </select>
-        </div>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" required>
+      <br>
 
-        <br>
-
-        <div>
-            <label for="delivery-date">Delivery date</label>
-            <input type="date" name="deliveryDate" id="delivery-date"  required>
-        </div>
-
-        <br>
-
-          <div class="btns-group">
-            <a href="#" class="btn btn-prev">Previous</a>
-            <a href="#" class="btn btn-next value-btn">Next</a>
-          </div>
-        </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <input type="submit" value="Submit" class="btn" />
+      </div>
+    </div>
+  </form>
 
 
-
-        <div class="form-step">
-
-
-          <!-- bring the price from the backend to ejs -->
-          <div class="price-container">
-            <h2 class="shipping-price"></h2>
-          </div>
-
-          <!-- payment here -->     
-          <div>
-            <label for="Card-Number">Card Number</label>
-            <input type="text" name="Card-Number" id="Card-Number"  required>
-          </div>
-          
-          <br>
-
-          <div class="data-cvv">
-            <div>
-              <label for="Expiry-Date">Expiry Date</label>
-              <input type="date" name="Expiry-Date" id="Expiry-Date"  required>
-            </div>
-
-            <div>
-              <label for="cvv">CVV</label>
-              <input type="number" name="cvv" id="cvv"  required>
-            </div>
-          </div>
-
-          <br>
-
-          <label for="name">Name</label>
-            <input type="text" name="name" id="name"  required>
-          <br>
-
-          <div class="btns-group">
-            <a href="#" class="btn btn-prev">Previous</a>
-            <input type="submit" value="Submit" class="btn" />
-          </div>
-        </div>
-      </form>
-    
-      
 </body>
+
 </html>

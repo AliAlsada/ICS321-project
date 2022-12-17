@@ -8,6 +8,7 @@
     --red: #c5283d;
     --white: #ffffff;
     --light-white: #cdcdcd;
+    --body-color: linear-gradient(219.58deg, #010417 10.26%, #2B333F 84.25%);
 } 
 
 body{

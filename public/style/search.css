@@ -5,7 +5,7 @@
     --red: #c5283d;
     --white: #ffffff;
     --light-white: #cdcdcd;
-    --body-color: #323031;
+    --body-color: linear-gradient(219.58deg, #010417 10.26%, #2B333F 84.25%);
 }
 
 *{
@@ -15,7 +15,8 @@
 }
 
 body{
-    background-color: var(--body-color);
+    background: var(--body-color);
+    min-height: 100vh;
 }
 
 header{
@@ -33,6 +34,10 @@ li, a{
     font-size: 2rem;
     color: var(--yellow);
     padding: 10px;
+}
+
+option{
+    color: #010417;
 }
 
 .dropdown {
@@ -121,6 +126,11 @@ select{
     padding: 2px;
     margin-bottom: 2em;
     outline: none;
+    text-align: center;
+}
+
+form{
+    width: 30%;
 }
 
 button{

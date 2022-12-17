@@ -4,26 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style/track.css">
+    <link rel="stylesheet" href="/style/admin.css">
     <title>Track</title>
 </head>
 <body>
-    <section class="step-wizard">
-        <ul class="step-wizard-list">
-            <% if (history.length > 0) { %> 
-                <% history.forEach(record => { %>
-                    <li class="step-wizard-item">
-                        <span class="progress-count">1</span>
-                        <span class="progress-label">Country: <%= record.location_name.country%></span>
-                        <span class="progress-label">City: <%= record.location_name.city%></span>
-                        <span class="progress-label">Location name: <%= record.location_name.name%></span>
-                        <span class="progress-label">Date: <%= record.date %></span>
-                        <span class="progress-label">Time: <%= record.time %></span>
-                    </li>
-            <% }) %> 
-            <% } %> 
-        </ul>
-    </section>
+    <table class="editable " id="historyTable">
+        <thead>
+            <tr>
+                <th>location Number</th>
+                <th>location Name</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>state</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% if (typeof history !='undefined' && history.length> 0) { %>
+                <% history.forEach(record=> { %>
+                    <tr id="<%=record.barcode%>/">
+                        <th class=<%=record.barcode%>>
+                            <%=record.location_num%>
+                        </th>
+                        <th class=<%=record.barcode%>>
+                            <%=record.location_name.name%>
+                        </th>
+
+                        <th class=<%=record.barcode%>>
+                            <%=record.location_name.country%>
+                        </th>
+
+                        <th class=<%=record.barcode%>>
+                            <%=record.location_name.city%>
+                        </th>
+
+                        <th class=<%=record.barcode%>>
+                            <%=record.date%>
+                        </th>
+                        <th class=<%=record.barcode%>>
+                            <%=record.time%>
+                        </th>
+
+                        <th class=<%=record.barcode%>>
+                            <%=state%>
+                        </th>
+
+
+
+                    </tr>
+
+                    <% })%>
+
+                        <% } %>
+        </tbody>
+
+    </table>
 
     
 </body>

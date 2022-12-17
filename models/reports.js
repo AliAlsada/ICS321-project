@@ -101,9 +101,24 @@ const getReportThree = async (firstDate, secondDate) => {
     return packages;
 }
 
+const getReportFour = async (searchInfo) => {
+    const db = await getDbConnection();
+    
+    const sql = `SELECT DISTINCT p.barcode, p.delivery_date, p.distenation, p.sender_ID, p.weight, p.price 
+    FROM PACKAGE p 
+    INNER JOIN "${searchInfo.searchedCatagory}" a ON p.barcode = a.barcode 
+    INNER JOIN "${searchInfo.searchedState}" s ON p.barcode = s.barcode
+    WHERE distenation = "${searchInfo.searchedCity}"`;
+    
+    const packages = await db.all(sql);
+    await db.close();
+    return packages;
+}
+
 
 module.exports = {
     getAllPackages,
     getReportTwo,
     getReportThree,
+    getReportFour,
 }

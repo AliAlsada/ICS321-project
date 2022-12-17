@@ -12,7 +12,9 @@
 
 <body>
 
-
+    <header>
+        <%- include("./partials/adminHeader.ejs") %>
+    </header>
 
 
     <table class="editable " id="historyTable">
@@ -58,12 +60,7 @@
                             <%=state%>
                         </th>
 
-                        <td>
-                            <button class="button-17 updatePackage" id=<%=record.barcode%>>update</button>
-                        </td>
-                        <td>
-                            <button class="button-17 removePackage <%=record.barcode%>">remove</button>
-                        </td>
+
 
                     </tr>
 
@@ -74,7 +71,7 @@
 
     </table>
 
-    <div>
+    <div class="recordBtnDiv">
         <button id="add-record">Add-Record</button>
     </div>
 

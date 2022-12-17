@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style/search.css">
+    <title>search</title>
+</head>
+<body id="reportsBody">
+
+    
+    <header>
+        <%- include("./partials/adminHeader.ejs") %>
+    </header>
+
+
+    <h1>Advanced Search</h1>
+
+
+    <div class="search-containor">
+        <form action="/reports/report/4" method="post">
+
+            <select id="catagory" name="searchedCatagory" class="catagory">
+                <option value="">Select catagory</option>
+                <option value="CHEMICAL">Chemical</option>
+                <option value="Liquid">Liquid</option>
+                <option value="FRAGILE">Fragile</option>
+                <option value="REGULAR">Regular</option>
+            </select>
+
+            <select id="searched-city" name="searchedCity" class="searched-city">
+                <option value="">Select City</option>
+                <option value="Riyadh">Riyadh</option>
+                <option value="Jeddah">Jeddah</option>
+                <option value="Mecca">Mecca</option>
+                <option value="Dammam">Dammam</option>
+                <option value="Dharan">Dahran</option>
+                <option value="safwa">Safwa</option>
+                <option value="Qatif">Qatif</option>
+                <option value="Abha">Abha</option>
+            </select>
+
+            <select id="seached-state" name="searchedState" class="seached-state">
+                <option value="">Select a State</option>
+                <option value="DELIVERED">Delivered</option>
+                <option value="LOST">Lost</option>
+                <option value="AVAILABLE">Avaliable</option>
+                <option value="IN_TRANSIT">In transit</option>
+            </select>
+
+
+            <button class="searchButton">Search</button>
+            
+        </form>
+    </div>
+
+    <script src="/js/admin.js"></script>
+
+</body>
+</html>

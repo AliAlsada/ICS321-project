@@ -123,6 +123,9 @@ const searchedCondition = async (customer_id, searchedCondition) => {
 }
 
 
+
+
+
 const getCatagory = async (barcode, catagory) => {
 
     const db = await getDbConnection();
@@ -147,7 +150,9 @@ const trackResults = async (barcode) => {
             const location = await db.get(`SELECT country, city, name FROM LOCATION WHERE location_num = ${record.location_num}`);
             record["location_name"] = location; //add country and city name and name to the row that is taken from the history table
         })
-    } return row;
+    } 
+    
+    return row;
 }
 
 const getState = async (barcode, state) => {

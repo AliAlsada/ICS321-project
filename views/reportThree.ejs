@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style/admin.css">
+    <title>Report 3</title>
+</head>
+
+<body id="reportsBody">
+
+    <header>
+        <%- include("./partials/adminHeader.ejs") %>
+    </header>
+
+    <h1 class="reportTwoH1">Chemical: <%= packages.chemical.length%> packages</h1>
+    <table class="editable report-2" id="packageTable">
+        <thead>
+            <tr>
+                <th>barcode</th>
+                <th>sender_ID</th>
+                <th>reciver_ID</th>
+                <th>distenation</th>
+                <th>weight</th>
+                <th>price</th>
+                <th>delivery_date</th>
+                <th>payment</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <% packages.chemical.forEach(package=> { %>
+                <tr id="<%=package.barcode%>/">
+                    <th class=<%=package.barcode%>>
+                        <%=package.barcode%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.sender_ID%>
+                    </th>
+                    <th class=<%=package.barcode%>>
+                        <%=package.receiver_ID%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.distenation%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.weight%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.price%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.delivery_date%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.weight * 3%>
+                    </th>
+             
+
+                </tr>
+
+                <% }); %>
+        </tbody>
+
+    </table>
+
+
+    <!-- table Two -->
+    <h1 class="reportTwoH1">Regular: <%= packages.regular.length%> packages</h1>
+    <table class="editable report-2" id="packageTable">
+        <thead>
+            <tr>
+                <th>barcode</th>
+                <th>sender_ID</th>
+                <th>reciver_ID</th>
+                <th>distenation</th>
+                <th>weight</th>
+                <th>price</th>
+                <th>delivery_date</th>
+                <th>payment</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <% packages.regular.forEach(package=> { %>
+                <tr id="<%=package.barcode%>/">
+                    <th class=<%=package.barcode%>>
+                        <%=package.barcode%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.sender_ID%>
+                    </th>
+                    <th class=<%=package.barcode%>>
+                        <%=package.receiver_ID%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.distenation%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.weight%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.price%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.delivery_date%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.weight * 3%>
+                    </th>
+             
+
+                </tr>
+
+                <% }); %>
+        </tbody>
+
+    </table>
+
+    <!-- table Three -->
+    <h1 class="reportTwoH1">Liquid: <%= packages.liquid.length%> packages</h1>
+    <table class="editable report-2" id="packageTable">
+        <thead>
+            <tr>
+                <th>barcode</th>
+                <th>sender_ID</th>
+                <th>reciver_ID</th>
+                <th>distenation</th>
+                <th>weight</th>
+                <th>price</th>
+                <th>delivery_date</th>
+                <th>payment</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <% packages.liquid.forEach(package=> { %>
+                <tr id="<%=package.barcode%>/">
+                    <th class=<%=package.barcode%>>
+                        <%=package.barcode%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.sender_ID%>
+                    </th>
+                    <th class=<%=package.barcode%>>
+                        <%=package.receiver_ID%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.distenation%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.weight%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.price%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.delivery_date%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.weight * 3%>
+                    </th>
+             
+
+                </tr>
+
+                <% }); %>
+        </tbody>
+
+    </table>
+
+    <!-- table four -->
+    <h1 class="reportTwoH1">Fragile: <%= packages.fragile.length%> packages</h1>
+    <table class="editable report-2" id="packageTable">
+        <thead>
+            <tr>
+                <th>barcode</th>
+                <th>sender_ID</th>
+                <th>reciver_ID</th>
+                <th>distenation</th>
+                <th>weight</th>
+                <th>price</th>
+                <th>delivery_date</th>
+                <th>payment</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <% packages.fragile.forEach(package=> { %>
+                <tr id="<%=package.barcode%>/">
+                    <th class=<%=package.barcode%>>
+                        <%=package.barcode%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.sender_ID%>
+                    </th>
+                    <th class=<%=package.barcode%>>
+                        <%=package.receiver_ID%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.distenation%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.weight%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.price%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.delivery_date%>
+                    </th>
+
+                    <th class=<%=package.barcode%>>
+                        <%=package.weight * 3%>
+                    </th>
+             
+
+                </tr>
+
+                <% }); %>
+        </tbody>
+
+    </table>
+
+    <script src="/js/admin.js"></script>
+
+
+</body>
+
+</html>

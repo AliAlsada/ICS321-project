@@ -98,6 +98,105 @@
 
     </table>
 
+
+    <% if (typeof id != 'undefined') { %> 
+
+        <div class="recordBtnDiv">
+            <button id="add-package">add package</button>
+        </div>
+        
+    <dialog class="modal" id="modal-package">
+
+        <button class="button close-button-two close-button">X</button>
+        
+            <form class="form" method="post" action="/index/addPackage/<%=id%>">
+    
+                <div>
+                    <label for="country">Country/Region</label>
+                    <select id="country" name="country" class="country" required>
+                      <option value="">Select Country</option>
+                      <option value="SA">Saudi Arabia</option>
+                    </select>       
+                </div>
+                
+    
+                <div>
+                    <label for="city">City</label>
+                    <select id="city" name="city" class="city" required>
+                      <option value="">Select City</option>
+                      <option value="Riyadh">Riyadh</option>
+                      <option value="Jeddah">Jeddah</option>
+                      <option value="Mecca">Mecca</option>
+                      <option value="Dammam">Dammam</option>
+                      <option value="Dharan">Dahran</option>
+                      <option value="safwa">Safwa</option>
+                      <option value="Qatif">Qatif</option>
+                      <option value="Abha">Abha</option>
+                    </select>
+                </div>
+    
+         
+                <div>
+                    <label for="first-name">Recipient Name</label>
+                    <div class="recipient-name">
+                        <input type="text" name="fname" id="fname" class="first-name" placeholder="First Name" required>
+                        <input type="text" name="lname" id="lname" class="last-name" placeholder="Last Name" required>
+                    </div>
+                </div>
+    
+                <div>
+                    <label for="phone">Phone</label>
+                    <input type="tel" name="phone" id="phone" class="phone" placeholder="Write Recipient Phone starting with 05" required>
+                </div>
+    
+    
+           
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="email" placeholder="Write Recipient Email" required>
+                </div>
+    
+                <div>
+                    <!-- this needs to be updated to better selector -->
+                    <label for="weight">Estimated weight (Kg)</label>
+                    <input type="number" name="weight" id="weight" required>
+                </div>
+            
+                  <div>
+                    <label for="value">Value (SAR)</label>
+                    <input type="number" name="value" id="value" required>
+                  </div>
+        
+            
+                  <div>
+                    <label for="catagory">Catagory</label>
+                    <select id="catagory" name="catagory" class="catagory" required>
+                      <option value="">Select catagory</option>
+                      <option value="CHEMICAL">Chemical</option>
+                      <option value="LIQUID">Liquid</option>
+                      <option value="FRAGILE">Fragile</option>
+                      <option value="REGULAR">Regular</option>
+                    </select>
+                  </div>
+            
+    
+            
+                  <div>
+                    <label for="delivery-date">Delivery date</label>
+                    <input type="date" name="deliveryDate" id="delivery-date" required>
+                  </div>
+    
+                  
+                <div>
+                    <button class="button submit-button" type="submit">submit form</button>
+                </div>
+    
+            </form>
+            
+        </dialog>
+        <% } %>  
+
+
     <script src="/js/admin.js"></script>
 
 </body>

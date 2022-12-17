@@ -277,7 +277,7 @@ db.run(sql);
 // sql = `UPDATE EMPLOYEE SET account_id = 1 WHERE employee_ID = "e201960570"`;
 // db.run(sql)
 
-sql = `SELECT * FROM ACCOUNT`
+sql = `SELECT * FROM HISTORY`
 db.all(sql, [], (err, rows) => {
         if (err) return console.log(err.message);
         rows.forEach((row) => {console.log(row)});

@@ -1,8 +1,11 @@
 const express = require("express");
+const bcrypt = require("bcryptjs");
 const { trackResults } = require("../controllers/trackControllers");
 const adminQueries = require("../models/admin");
 const searchQueries = require("../models/search");
 const historyQueries = require("../models/history");
+const registerQueries = require("../models/register");
+const sendQueries = require("../models/send");
 
 const router = express.Router();
 
@@ -11,6 +14,10 @@ router.use(express.json());
 
 router.get("/", (req, res) => {
     res.render("index");
+})
+
+router.get("/admin", async (req, res) => {
+    res.render("adminIndex", { user: req.session.user, customers: await adminQueries.getAllCustomers()});
 })
 
 
@@ -42,7 +49,7 @@ router.get("/:id/packages", async (req, res) => {
         }
     }
     
-    res.render("adminResults", { packages: packages });
+    res.render("adminResults", { packages: packages, id: req.params.id});
 })
 
 
@@ -148,6 +155,46 @@ router.post("/:barcode/track", async (req, res) => {
 router.get("/reports", async (req, res) => {
     res.render("adminReports");
 })
+
+
+router.post("/addUser", async (req, res) => {
+    //get the data from the user and hash the password
+    const { email, firstName, lastName, phone, password, country, city} = req.body
+    let hashedPassword = await bcrypt.hash(password, 8);
+
+    //here, i need to validate the registered information (email, phone) from the database
+
+    if (await registerQueries.validatePhone(phone))
+        return res.render("adminIndex",  { user: req.session.user, customers: await adminQueries.getAllCustomers()});
+
+    //validate email
+    else if (await registerQueries.validateEmail(email))
+        return res.render("adminIndex", { user: req.session.user, customers: await adminQueries.getAllCustomers()});
+
+    //if email is not in used    
+    else {
+        //create customer
+        const meta = await registerQueries.createCustomer(email, firstName, lastName, phone, country, city);
+        const customer_id = meta.lastID;
+
+        //create account for customer
+        registerQueries.createCustomerAccount(email, hashedPassword, customer_id);
+        res.render("adminIndex", { user: req.session.user, customers: await adminQueries.getAllCustomers()});
+    }
+})
+
+router.post("/addPackage/:id", async (req, res) => {
+    //get the data from the user and hash the password
+
+    const senderID = req.params.id;
+    console.log(senderID)
+    await sendQueries.saveCustomer(req, res);
+    await sendQueries.savePackage(req, res, senderID);
+    return res.render("adminIndex",  { user: req.session.user, customers: await adminQueries.getAllCustomers()});
+})
+
+
+
 
 
 
