@@ -9,6 +9,9 @@
     --white: #ffffff;
     --light-white: #cdcdcd;
     --body-color: linear-gradient(219.58deg, #010417 10.26%, #2B333F 84.25%);
+    --dark-yellow-color: #ffbb33;
+    --yellow-color: #FFC857;
+
 } 
 
 body{
@@ -147,6 +150,84 @@ hr{
 .results{
     background-color: var(--white);
 }
+
+
+/* --------------------------------- Profile ---------------------------------*/
+
+.profileBody {
+    background: var(--body-color);
+    height: 100vh;
+}
+
+
+.profileInfo {
+    padding: 36px;
+
+}
+
+.Container {
+    width: 80%;
+    background-color: #e5e2e2;
+    margin: auto;
+    margin-top: 2em;
+    padding: 30px;
+    border-radius: 10px;
+
+    
+}
+
+
+.GeneralProfile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.GeneralProfile div {
+    display: block;
+}
+
+.updateButton {
+    padding: 20px;
+    margin-left: 2em;
+    margin-bottom: 1em;
+    font-size: 1.1rem;
+
+    text-align: center;
+    border-radius: 10px;
+    border: 0;
+    padding: 0.75rem;
+    text-decoration: none;
+    background-color: var(--yellow-color);
+    color: #000000;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.updateButton:hover {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--dark-yellow-color);
+}
+
+.websiteName{
+    color: white;
+    font-size: 2rem;
+    margin-left: 1em;
+}
+
+input,
+select {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    
+    
+}
+
 
 
 

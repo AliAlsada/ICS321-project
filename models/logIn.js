@@ -33,4 +33,12 @@ const getCustomerInfo = async (customerEmail) =>{
 }
 
 
-module.exports = {getCustomerAccountInfo, getAdminAccountInfo, getCustomerInfo};
+
+const updateString = async (id, column, newName) => {
+    const db = await getDbConnection();
+    await db.run(`UPDATE CUSTOMER SET '${column}' = '${newName}' WHERE customer_id = ${id}`);
+    await db.close();
+}
+
+
+module.exports = {getCustomerAccountInfo, getAdminAccountInfo, getCustomerInfo, updateString};

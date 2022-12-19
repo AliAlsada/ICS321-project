@@ -142,4 +142,6 @@ module.exports = {
     getCustomer,
     updatePackageInfo,
     deletePackage,
+    updateAccountInfo,
+    getCustomerAccount,
 }

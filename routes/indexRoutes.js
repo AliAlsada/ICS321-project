@@ -6,6 +6,7 @@ const searchQueries = require("../models/search");
 const historyQueries = require("../models/history");
 const registerQueries = require("../models/register");
 const sendQueries = require("../models/send");
+const { session } = require("passport");
 
 const router = express.Router();
 
@@ -191,6 +192,13 @@ router.post("/addPackage/:id", async (req, res) => {
     await sendQueries.saveCustomer(req, res);
     await sendQueries.savePackage(req, res, senderID);
     return res.render("adminIndex",  { user: req.session.user, customers: await adminQueries.getAllCustomers()});
+})
+
+
+router.get("/log-out", async (req, res) => {
+    req.session.destroy();
+    res.redirect("/index");
+    
 })
 
 

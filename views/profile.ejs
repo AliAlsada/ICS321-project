@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/index.css">
+    <title>Profile</title>
+</head>
+
+<body class="profileBody">
+
+    <% if (typeof user != 'undefined') { %>
+        <%- include("./partials/userHeader.ejs") %> 
+      <% } else {%>
+        <%- include("./partials/header.ejs") %> 
+      <% } %> 
+
+
+      <form action="/profile/<%=userInfo[0].customer_id%>" method="post">
+          <div class="GeneralProfileContainer Container">
+            <h1 class="profileInfo">General Info</h1>
+            
+            <div class="GeneralProfile">
+
+                <div class="GeneralProfile">
+                    <label class="GeneralProfileText" for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder= <%= userInfo[0].email%>>
+                </div>
+
+                <div class="GeneralProfile">
+                    <label class="GeneralProfileText" for="fname">First Name</label>
+                    <input type="text" name="Fname" id="fname" placeholder= <%= userInfo[0].Fname%>>
+                </div>
+        
+                <div class="GeneralProfile">
+                    <label class="GeneralProfileText" for="lname">Last Name</label>
+                    <input type="text" name="Lname" id="lname" placeholder= <%= userInfo[0].Lname%>>
+                </div>
+        
+    
+                <div class="GeneralProfile">
+                    <label class="GeneralProfileText" for="Phone" >Phone</label>
+                    <input type="tel" name="phone" id="phone" placeholder=<%= userInfo[0].phone%>>
+                </div>
+    
+                        
+                <div class="GeneralProfile">
+                    <label class="GeneralProfileText" for="country">Country</label>
+                    <select name="country" class="country" id="country">
+                        <option value=""><%= userInfo[0].country%></option>
+                        <option value="SA">Saudi Arabia</option>
+                    </select>
+                </div>
+                
+                <div class="GeneralProfile">
+                    <label class="GeneralProfileText" for="City">City</label>
+                    <select id="city" name="city" class="user-input">
+                        <option value=""><%= userInfo[0].city%></option>
+                        <option value="RY">Riyadh</option>
+                        <option value="JE">Jeddah</option>
+                        <option value="ME">Mecca</option>
+                        <option value="DM">Dammam</option>
+                        <option value="DH">Dahran</option>
+                        <option value="SF">Safwa</option>
+                        <option value="QF">Qatif</option>
+                        <option value="AB">Abha</option>
+                    </select>
+                </div>
+    
+            </div>
+                <button class="updateButton" type="submit">Update Info</button>
+            </div>
+        </div>
+
+
+      </form>
+
+    
+    <script src="/js/profile.js"></script>
+    
+</body>
+</html>

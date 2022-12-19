@@ -1,24 +1,11 @@
-body{
-    display: grid;
-    place-content: center;
-    min-height: 100vh;
-    background-color: #323031; 
-    color: aliceblue;
+:root {
+    --yellow: #FFC857;
+    --dark-yellow: #ffbb33;
+    --red: #c5283d;
+    --white: #ffffff;
+    --light-white: #cdcdcd;
+    --body-color: linear-gradient(219.58deg, #010417 10.26%, #2B333F 84.25%);
 }
 
 
-.contanior{
-    display: grid;
-    gap: 1.5rem;
-    grid-auto-columns: 1fr 1fr;
-    grid-template-areas:
-     'one'
-     'two'
-     'three'
-     'four'
-     'five';
-  
-    padding-block: 2rem;
-    width: min(95%, 70rem);
-    margin-inline: auto;
-}
+/* --------------------------------- Profile ---------------------------------*/
