@@ -15,7 +15,6 @@ const getDbConnection = async () => {
 
 const addRecord = async (recordObject, barcode) => {
     console.log(recordObject)
-    console.log("Sssssssss")
     const db = await getDbConnection();
 
     const meta = await db.run(`INSERT INTO HISTORY 

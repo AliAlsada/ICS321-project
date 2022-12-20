@@ -142,7 +142,7 @@ const trackResults = async (barcode) => {
     const db = await getDbConnection();
 
     //get history of the package from the database
-    const row = await db.all(`SELECT * FROM HISTORY WHERE barcode = ${barcode} ORDER BY DATE`);
+    const row = await db.all(`SELECT * FROM HISTORY WHERE barcode = ${barcode} ORDER BY DATE DESC`);
 
     //retreive the location name from location table by using the location num that is given in history table
     if (row.length > 0) {
